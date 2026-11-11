@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PORTAFOLIO // Video & Content Creator</title>
+  <meta name="description" content="Portafolio interactivo de video estilo TikTok. Selección de mejores proyectos, reels de alto impacto y tarifas.">
+  
+  <!-- Google Fonts: Space Grotesk & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white antialiased select-none">
+
+  <!-- =========================================================================
+       1. VISTA GENERAL: HOME / SELECTOR DE PROYECTOS
+       ========================================================================= -->
+  <main id="home-view" class="view-screen active">
+    
+    <!-- Header Principal -->
+    <header class="home-header">
+      <div class="creator-badge">
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+        </div>
+        <div class="creator-info">
+          <h1 id="creator-name" class="creator-name">THOMAS // VISUALS</h1>
+          <p id="creator-tagline" class="creator-role">Video Editor & Filmmaker</p>
+        </div>
+      </div>
+      
+      <!-- Botón 1-Tap Pricing -->
+      <button id="open-pricing-btn" class="btn-pill-pricing" aria-label="Ver tarifas de videos">
+        <i data-lucide="zap" class="icon-zap"></i>
+        <span>Tarifas</span>
+      </button>
+    </header>
+
+    <!-- Hero / Intro Rápida -->
+    <section class="home-hero">
+      <div class="hero-tag">SHOWCASE 2026 // FAST SELECTION</div>
+      <h2 class="hero-title">Mis mejores trabajos.<br><span class="text-gradient">En formato vertical.</span></h2>
+      <p class="hero-subtitle">Tocá cualquier proyecto para ingresar al feed de videos y deslizar como en TikTok.</p>
+    </section>
+
+    <!-- Lista de Proyectos -->
+    <section class="projects-section">
+      <div class="section-label">
+        <span>SELECCIONÁ UN PROYECTO</span>
+        <span class="projects-counter" id="projects-count">4 PROYECTOS</span>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+        <!-- Renderizado dinámicamente desde app.js -->
+      </div>
+    </section>
+
+    <!-- Enlace a Portafolio Extendido (Framer) & Contacto -->
+    <section class="extended-portfolio-card">
+      <div class="card-glow"></div>
+      <div class="extended-content">
+        <div class="extended-badge">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          <span>¿BUSCÁS MÁS DETALLE?</span>
+        </div>
+        <h3 class="extended-title">Portafolio Extendido & Casos de Estudio</h3>
+        <p class="extended-desc">Para ver proyectos de formato largo, documentales y el desglose de producción completo en Framer.</p>
+        <a id="extended-portfolio-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-extended-link">
+          <span>Abrir Portafolio en Framer</span>
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="home-footer">
+      <div class="footer-cta">
+        <p>¿Listo para elevar el contenido de tu marca?</p>
+        <button class="footer-pricing-btn" onclick="openPricingModal()">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Cotizar un proyecto</span>
+        </button>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 • Optimizado para mobile & Vercel</span>
+      </div>
+    </footer>
+  </main>
+
+
+  <!-- =========================================================================
+       2. VISTA FEED VERTICAL: ESTILO TIKTOK
+       ========================================================================= -->
+  <section id="feed-view" class="view-screen">
+    
+    <!-- Marco contenedor (En desktop se centra como teléfono, en móvil ocupa 100%) -->
+    <div class="feed-device-wrapper">
+      
+      <!-- Barra Superior Flotante del Feed -->
+      <nav class="feed-top-bar">
+        <button id="back-to-home-btn" class="feed-nav-btn btn-back" aria-label="Volver a proyectos">
+          <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          <span>Proyectos</span>
+        </button>
+
+        <div class="current-project-badge" id="feed-current-project-title">
+          Reels Virales
+        </div>
+
+        <div class="feed-top-actions">
+          <button id="sound-toggle-btn" class="feed-nav-btn btn-sound" aria-label="Alternar sonido">
+            <i data-lucide="volume-x" id="sound-icon" class="w-5 h-5"></i>
+            <span id="sound-label">Muted</span>
+          </button>
+          
+          <button class="feed-nav-btn btn-pricing-mini" onclick="openPricingModal()" aria-label="Ver tarifas">
+            <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Indicador de ayuda al primer usuario (Swipe hint) -->
+      <div id="swipe-hint" class="swipe-hint">
+        <div class="swipe-icon-anim">
+          <i data-lucide="chevrons-up" class="w-6 h-6"></i>
+        </div>
+        <span>Deslizá hacia arriba</span>
+      </div>
+
+      <!-- Icono animado de Play / Pause en el centro -->
+      <div id="play-pause-indicator" class="play-pause-indicator">
+        <div class="indicator-icon-box">
+          <i data-lucide="play" id="indicator-icon" class="w-8 h-8"></i>
+        </div>
+      </div>
+
+      <!-- Contenedor Scroll Snap de Videos -->
+      <div class="feed-scroll-container" id="feed-scroll-container">
+        <!-- Los videos del proyecto activo se inyectan acá dinámicamente -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       3. MODAL / BOTTOM SHEET: 1-TAP PRICING & CONTACTO
+       ========================================================================= -->
+  <div id="pricing-sheet-backdrop" class="sheet-backdrop">
+    <div id="pricing-sheet" class="pricing-sheet" role="dialog" aria-modal="true" aria-labelledby="pricing-title">
+      
+      <!-- Tirador de arrastre táctil en móvil -->
+      <div class="sheet-drag-handle"></div>
+
+      <!-- Header del Sheet -->
+      <div class="sheet-header">
+        <div>
+          <div class="sheet-tag">TARIFAS & SERVICIOS</div>
+          <h2 id="pricing-title" class="sheet-title">Precios Claros y Transparentes</h2>
+        </div>
+        <button id="close-pricing-btn" class="sheet-close-btn" aria-label="Cerrar ventana de tarifas">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="sheet-subtitle">
+        Sin vueltas ni cotizaciones que tardan días. Elegí el formato que mejor se adapte a tu meta y hablemos directo.
+      </p>
+
+      <!-- Grid de Planes / Precios -->
+      <div class="pricing-cards-container" id="pricing-cards-container">
+        <!-- Se inyecta dinámicamente desde app.js -->
+      </div>
+
+      <!-- Botón de Contacto Principal (WhatsApp) -->
+      <div class="sheet-footer">
+        <a id="whatsapp-cta-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-main">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          <div class="btn-text-group">
+            <span class="btn-primary-text">Consultar por WhatsApp</span>
+            <span class="btn-secondary-text">Respondo en menos de 2 horas</span>
+          </div>
+        </a>
+
+        <div class="sheet-contact-alt">
+          <span>¿Tenés un proyecto a medida o de gran escala?</span>
+          <a id="custom-quote-link" href="#" class="link-custom-quote">Hablemos para armar un presupuesto especial →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script principal con los datos y la lógica interactiva -->
+  <script src="app.js"></script>
+</body>
+</html>
