@@ -1,72 +1,74 @@
 /**
  * SOFIA SOLAR // PORTFOLIO & CREATIVE DIRECTION
- * Cloud Video CDN Streaming Architecture (Cloudinary / External CDN / YouTube)
+ * Cloud Video CDN Streaming Architecture (Cloudinary H.264 / AVC1)
  */
 
 /* ==========================================================================
-   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY / CDN EXTERNO)
+   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY H.264 STREAMING)
    --------------------------------------------------------------------------
-   Links directos de streaming desde Cloudinary organizados por categoría.
+   Todos los enlaces usan `vc_h264,q_auto` y extensión `.mp4` para garantizar
+   códec `video/mp4;codecs=avc1` compatible con el 100% de navegadores
+   (Windows, Mac, Android, iOS) sin pantallas negras por HEVC.
    ========================================================================== */
 const CLOUD_VIDEO_URLS = {
   // 1. VIDEOFOLIO -> Social Media (Vertical 9:16)
   "social-media": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794956266/CHICARUBIO_LETRAS.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
   ],
 
   // 2. VIDEOFOLIO -> Real Estate (Vertical 9:16)
   "real-estate": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794955618/galpon_edit_original_-_FG.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794955612/240_correccion.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794955579/la_alameda_reel.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955618/galpon_edit_original_-_FG.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955612/240_correccion.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955579/la_alameda_reel.mp4"
   ],
 
   // 3. VIDEOFOLIO -> Marca Personal (Vertical 9:16)
   "marca-personal": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794955229/reel_31.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794955222/ali_-_4.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794955205/REEL_37.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955229/reel_31.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955222/ali_-_4.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955205/REEL_37.mp4"
   ],
 
   // 4. VIDEOFOLIO -> Gastronomía (Vertical 9:16)
   "gastronomia": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794954959/pochi_reel_2.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794954946/POCHI_SORTEO_2.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954959/pochi_reel_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954946/POCHI_SORTEO_2.mp4"
   ],
 
   // 5. VIDEOFOLIO -> Entrenamiento (Vertical 9:16)
   "entrenamiento": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794954523/sabores_clau_bora.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794954447/REMAKE_BORA_28.09.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794954445/BORA_LUNES_7.9.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954523/sabores_clau_bora.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954447/REMAKE_BORA_28.09.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954445/BORA_LUNES_7.9.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
   ],
 
   // 6. VIDEOFOLIO -> Distribuidora (Vertical 9:16)
   "distribuidora": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953842/JUDAS_ULT_VERS.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953806/pelea_chsime.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953842/JUDAS_ULT_VERS.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953806/pelea_chsime.mp4"
   ],
 
-  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9 - Acepta link Cloudinary .mp4 o link de YouTube)
+  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9)
   "youtube": [
     "VIDEOFOLIO/YOUTUBE/ytb%206.mp4"
   ],
 
-  // 8. DJ -> Grabaciones (Vertical 9:16 - los 5 videos curados en Cloudinary)
+  // 8. DJ -> Grabaciones (Vertical 9:16 - convertidos a .mp4 H.264 en Cloudinary)
   "grabaciones": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953292/IMG_0799_1.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953268/IMG_0789_1.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953264/IMG_0786_2.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953257/IMG_0782.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794953189/IMG_0800_1.mov"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953292/IMG_0799_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953268/IMG_0789_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953264/IMG_0786_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953257/IMG_0782.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953189/IMG_0800_1.mp4"
   ],
 
   // 9. DJ -> Video Sets (Horizontal 16:9 - Próximos sets de YouTube o Cloudinary)
   "video-sets": []
 };
 
-// Rutas locales de respaldo automático (solo si se abre localmente sin conexión)
+// Rutas locales de respaldo (usadas automáticamente si estás sin internet en tu PC)
 const LOCAL_FALLBACK_URLS = {
   "social-media": [
     "VIDEOFOLIO/SOCIALMEDIA/CHICARUBIO%20%2B%20LETRAS.mp4"
@@ -99,30 +101,30 @@ const LOCAL_FALLBACK_URLS = {
     "VIDEOFOLIO/YOUTUBE/ytb%206.mp4"
   ],
   "grabaciones": [
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0799%20%281%29.MOV",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0789%20%281%29.MOV",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0786%20%282%29.MOV",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0782.MOV",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0800%20%281%29.MOV"
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0799%20%281%29.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0789%20%281%29.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0786%20%282%29.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0782.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0800%20%281%29.mp4"
   ],
   "video-sets": []
 };
 
-/**
- * Devuelve la URL directa de Cloudinary tal cual fue provista para evitar
- * límites de transformación síncrona en videos mayores a 40MB.
- */
 function optimizeCloudVideoUrl(rawUrl, fallbackUrl) {
   const trimmed = (rawUrl || '').trim();
   if (!trimmed || trimmed.includes('TU_CLOUD_NAME')) {
     return fallbackUrl || trimmed;
   }
+  if (trimmed.includes('res.cloudinary.com') && trimmed.includes('/video/upload/')) {
+    let url = trimmed.replace(/\.mov$/i, '.mp4');
+    if (!url.includes('/video/upload/vc_h264')) {
+      url = url.replace('/video/upload/', '/video/upload/vc_h264,q_auto/');
+    }
+    return url;
+  }
   return trimmed;
 }
 
-/**
- * Detecta si una URL corresponde a un link de YouTube y devuelve su URL de embed
- */
 function getYouTubeEmbedUrl(url) {
   if (!url) return null;
   const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
@@ -146,18 +148,21 @@ function buildVideoProjectsFromCloudConfig() {
   Object.keys(meta).forEach(key => {
     const cloudList = CLOUD_VIDEO_URLS[key] || [];
     const localList = LOCAL_FALLBACK_URLS[key] || [];
-    const count = cloudList.length;
+    const count = Math.max(cloudList.length, localList.length);
     const videos = [];
 
     for (let i = 0; i < count; i++) {
       const item = cloudList[i];
-      const rawUrl = typeof item === 'string' ? item : (item && item.url ? item.url : '');
-      const fallback = localList[i] || '';
-      const finalUrl = optimizeCloudVideoUrl(rawUrl, fallback);
-      if (finalUrl) {
+      const rawCloudUrl = typeof item === 'string' ? item : (item && item.url ? item.url : '');
+      const localH264Url = localList[i] || '';
+      // Usar SIEMPRE como fuente principal el stream de Cloudinary en H.264 (vc_h264,q_auto)
+      const primaryUrl = optimizeCloudVideoUrl(rawCloudUrl, localH264Url);
+      const backupUrl = localH264Url;
+
+      if (primaryUrl) {
         videos.push({
-          url: finalUrl,
-          fallbackUrl: fallback,
+          url: primaryUrl,
+          fallbackUrl: backupUrl,
           caption: meta[key].title,
           badge: meta[key].title.toUpperCase()
         });
@@ -3211,23 +3216,22 @@ function openCategoryVideoFeed(categoryKey) {
     </div>
   `).join('');
 
-  // Si un archivo .mov de Cloudinary no es decodificado nativamente por el navegador,
-  // prueba automáticamente la variante .mp4 de Cloudinary y luego el respaldo local
+  // Si una fuente falla o carga sin pista de video decodificable (videoWidth === 0 por HEVC),
+  // conmuta automáticamente a la fuente H.264 de respaldo
   feedContainer.querySelectorAll('video.tiktok-video').forEach(v => {
-    v.addEventListener('error', function onVidErr() {
-      const cur = v.getAttribute('src') || '';
-      if (cur.includes('res.cloudinary.com') && cur.toLowerCase().endsWith('.mov') && !v.dataset.triedMp4) {
-        v.dataset.triedMp4 = '1';
-        v.src = cur.replace(/\.mov$/i, '.mp4');
-        v.load();
-        return;
-      }
+    const switchToFallback = () => {
       const fb = v.dataset.fallback;
-      if (fb && cur !== fb) {
-        v.removeEventListener('error', onVidErr);
+      const cur = v.getAttribute('src') || '';
+      if (fb && cur !== fb && !v.dataset.switchedFb) {
+        v.dataset.switchedFb = '1';
         v.src = fb;
         v.load();
+        v.play().catch(() => {});
       }
+    };
+    v.addEventListener('error', switchToFallback);
+    v.addEventListener('loadedmetadata', () => {
+      if (v.videoWidth === 0) switchToFallback();
     });
   });
 
