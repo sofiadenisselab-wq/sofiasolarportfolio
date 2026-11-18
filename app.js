@@ -1,11 +1,182 @@
 /**
  * SOFIA SOLAR // PORTFOLIO & CREATIVE DIRECTION
- * Editorial Dark Mode + "Sol" Galaxy Pastel Theme
- * ASMR Creamy Jelly Audio Synthesis (Web Audio API)
- * Universal Tier Selector (Particulares / PyMEs / Empresas)
- * Desktop Mouse Wheel & Click Drag Interactivity
- * Geographic & Language-Based Smart Currency Logic
+ * Cloud Video CDN Streaming Architecture (Cloudinary H.264 / AVC1)
  */
+
+/* ==========================================================================
+   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY H.264 STREAMING)
+   --------------------------------------------------------------------------
+   Todos los enlaces usan `vc_h264,q_auto` y extensión `.mp4` para garantizar
+   códec `video/mp4;codecs=avc1` compatible con el 100% de navegadores
+   (Windows, Mac, Android, iOS) sin pantallas negras por HEVC.
+   ========================================================================== */
+const CLOUD_VIDEO_URLS = {
+  // 1. VIDEOFOLIO -> Social Media (Vertical 9:16)
+  "social-media": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
+  ],
+
+  // 2. VIDEOFOLIO -> Real Estate (Vertical 9:16)
+  "real-estate": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955618/galpon_edit_original_-_FG.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955612/240_correccion.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955579/la_alameda_reel.mp4"
+  ],
+
+  // 3. VIDEOFOLIO -> Marca Personal (Vertical 9:16)
+  "marca-personal": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955229/reel_31.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955222/ali_-_4.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955205/REEL_37.mp4"
+  ],
+
+  // 4. VIDEOFOLIO -> Gastronomía (Vertical 9:16)
+  "gastronomia": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954959/pochi_reel_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954946/POCHI_SORTEO_2.mp4"
+  ],
+
+  // 5. VIDEOFOLIO -> Entrenamiento (Vertical 9:16)
+  "entrenamiento": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954523/sabores_clau_bora.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954447/REMAKE_BORA_28.09.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954445/BORA_LUNES_7.9.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
+  ],
+
+  // 6. VIDEOFOLIO -> Distribuidora (Vertical 9:16)
+  "distribuidora": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953842/JUDAS_ULT_VERS.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953806/pelea_chsime.mp4"
+  ],
+
+  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9)
+  "youtube": [
+    "VIDEOFOLIO/YOUTUBE/ytb%206.mp4"
+  ],
+
+  // 8. DJ -> Grabaciones (Vertical 9:16 - convertidos a .mp4 H.264 en Cloudinary)
+  "grabaciones": [
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953292/IMG_0799_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953268/IMG_0789_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953264/IMG_0786_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953257/IMG_0782.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953189/IMG_0800_1.mp4"
+  ],
+
+  // 9. DJ -> Video Sets (Horizontal 16:9 - Próximos sets de YouTube o Cloudinary)
+  "video-sets": []
+};
+
+// Rutas locales de respaldo (usadas automáticamente si estás sin internet en tu PC)
+const LOCAL_FALLBACK_URLS = {
+  "social-media": [
+    "VIDEOFOLIO/SOCIALMEDIA/CHICARUBIO%20%2B%20LETRAS.mp4"
+  ],
+  "real-estate": [
+    "VIDEOFOLIO/REALSTATE/galpon%20edit%20original%20-%20FG.mp4",
+    "VIDEOFOLIO/REALSTATE/240%20correccion.mp4",
+    "VIDEOFOLIO/REALSTATE/la%20alameda%20reel.mp4"
+  ],
+  "marca-personal": [
+    "VIDEOFOLIO/MARCA%20PERSONAL/reel%2031.mp4",
+    "VIDEOFOLIO/MARCA%20PERSONAL/ali%20-%204.mp4",
+    "VIDEOFOLIO/MARCA%20PERSONAL/REEL%2037.mp4"
+  ],
+  "gastronomia": [
+    "VIDEOFOLIO/GASTRONOMIA/pochi%20reel%202.mp4",
+    "VIDEOFOLIO/GASTRONOMIA/POCHI%20SORTEO%202.mp4"
+  ],
+  "entrenamiento": [
+    "VIDEOFOLIO/ENTRENAMIENTO/sabores%20clau%20bora.mp4",
+    "VIDEOFOLIO/ENTRENAMIENTO/REMAKE%20BORA%2028.09.mp4",
+    "VIDEOFOLIO/ENTRENAMIENTO/BORA%20LUNES%207.9.mp4",
+    "VIDEOFOLIO/ENTRENAMIENTO/SIN%20RESULTADOS%20BORA%20-%20Trim.mp4"
+  ],
+  "distribuidora": [
+    "VIDEOFOLIO/DISTRIBUIDORA/JUDAS%20ULT%20VERS.mp4",
+    "VIDEOFOLIO/DISTRIBUIDORA/pelea%20chsime.mp4"
+  ],
+  "youtube": [
+    "VIDEOFOLIO/YOUTUBE/ytb%206.mp4"
+  ],
+  "grabaciones": [
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0799%20%281%29.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0789%20%281%29.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0786%20%282%29.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0782.mp4",
+    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0800%20%281%29.mp4"
+  ],
+  "video-sets": []
+};
+
+function optimizeCloudVideoUrl(rawUrl, fallbackUrl) {
+  const trimmed = (rawUrl || '').trim();
+  if (!trimmed || trimmed.includes('TU_CLOUD_NAME')) {
+    return fallbackUrl || trimmed;
+  }
+  if (trimmed.includes('res.cloudinary.com') && trimmed.includes('/video/upload/')) {
+    let url = trimmed.replace(/\.mov$/i, '.mp4');
+    if (!url.includes('/video/upload/vc_h264')) {
+      url = url.replace('/video/upload/', '/video/upload/vc_h264,q_auto/');
+    }
+    return url;
+  }
+  return trimmed;
+}
+
+function getYouTubeEmbedUrl(url) {
+  if (!url) return null;
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0&playsinline=1` : null;
+}
+
+function buildVideoProjectsFromCloudConfig() {
+  const meta = {
+    "social-media":  { title: "Social Media",   layout: "vertical" },
+    "real-estate":   { title: "Real Estate",    layout: "vertical" },
+    "marca-personal":{ title: "Marca Personal", layout: "vertical" },
+    "gastronomia":   { title: "Gastronomía",    layout: "vertical" },
+    "entrenamiento": { title: "Entrenamiento",  layout: "vertical" },
+    "distribuidora": { title: "Distribuidora",  layout: "vertical" },
+    "youtube":       { title: "YouTube",        layout: "horizontal" },
+    "grabaciones":   { title: "Grabaciones",    layout: "vertical" },
+    "video-sets":    { title: "Video Sets",     layout: "horizontal" }
+  };
+
+  const out = {};
+  Object.keys(meta).forEach(key => {
+    const cloudList = CLOUD_VIDEO_URLS[key] || [];
+    const localList = LOCAL_FALLBACK_URLS[key] || [];
+    const count = Math.max(cloudList.length, localList.length);
+    const videos = [];
+
+    for (let i = 0; i < count; i++) {
+      const item = cloudList[i];
+      const rawCloudUrl = typeof item === 'string' ? item : (item && item.url ? item.url : '');
+      const localH264Url = localList[i] || '';
+      // Usar SIEMPRE como fuente principal el stream de Cloudinary en H.264 (vc_h264,q_auto)
+      const primaryUrl = optimizeCloudVideoUrl(rawCloudUrl, localH264Url);
+      const backupUrl = localH264Url;
+
+      if (primaryUrl) {
+        videos.push({
+          url: primaryUrl,
+          fallbackUrl: backupUrl,
+          caption: meta[key].title,
+          badge: meta[key].title.toUpperCase()
+        });
+      }
+    }
+
+    out[key] = {
+      title: meta[key].title,
+      layout: meta[key].layout,
+      videos: videos
+    };
+  });
+  return out;
+}
 
 /* ==========================================================================
    DICCIONARIO DE TRADUCCIÓN MULTILINGÜE (ES / EN / FR)
@@ -475,180 +646,9 @@ const TRANSLATIONS = {
 
 
 /* ==========================================================================
-   DATOS DE PROYECTOS PARA TIKTOK FEED (VIDEOFOLIO & SOUND & SETS)
+   DATOS DE PROYECTOS PARA TIKTOK FEED & REPRODUCTOR HORIZONTAL (DESDE NUBE)
    ========================================================================== */
-const VIDEO_PROJECTS = {
-  "social-media": {
-    "title": "Social Media",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/SOCIALMEDIA/CHICARUBIO%20%2B%20LETRAS.mp4",
-        "caption": "CHICARUBIO + LETRAS",
-        "badge": "SOCIAL MEDIA"
-      }
-    ]
-  },
-  "real-estate": {
-    "title": "Real Estate",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/REALSTATE/240%20correccion.mp4",
-        "caption": "240 correccion",
-        "badge": "REAL ESTATE"
-      },
-      {
-        "url": "VIDEOFOLIO/REALSTATE/galpon%20edit%20original%20-%20FG.mp4",
-        "caption": "galpon edit original   FG",
-        "badge": "REAL ESTATE"
-      },
-      {
-        "url": "VIDEOFOLIO/REALSTATE/la%20alameda%20reel.mp4",
-        "caption": "la alameda reel",
-        "badge": "REAL ESTATE"
-      }
-    ]
-  },
-  "marca-personal": {
-    "title": "Marca Personal",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/MARCA%20PERSONAL/REEL%2037.mp4",
-        "caption": "REEL 37",
-        "badge": "MARCA PERSONAL"
-      },
-      {
-        "url": "VIDEOFOLIO/MARCA%20PERSONAL/ali%20-%204.mp4",
-        "caption": "ali   4",
-        "badge": "MARCA PERSONAL"
-      },
-      {
-        "url": "VIDEOFOLIO/MARCA%20PERSONAL/reel%2031.mp4",
-        "caption": "reel 31",
-        "badge": "MARCA PERSONAL"
-      }
-    ]
-  },
-  "gastronomia": {
-    "title": "Gastronomía",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/GASTRONOMIA/POCHI%20SORTEO%202.mp4",
-        "caption": "POCHI SORTEO 2",
-        "badge": "GASTRONOMÍA"
-      },
-      {
-        "url": "VIDEOFOLIO/GASTRONOMIA/pochi%20juego%20cookie%20ny.mp4",
-        "caption": "pochi juego cookie ny",
-        "badge": "GASTRONOMÍA"
-      },
-      {
-        "url": "VIDEOFOLIO/GASTRONOMIA/pochi%20reel%202.mp4",
-        "caption": "pochi reel 2",
-        "badge": "GASTRONOMÍA"
-      }
-    ]
-  },
-  "entrenamiento": {
-    "title": "Entrenamiento",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/ENTRENAMIENTO/BORA%20LUNES%207.9.mp4",
-        "caption": "BORA LUNES 7.9",
-        "badge": "ENTRENAMIENTO"
-      },
-      {
-        "url": "VIDEOFOLIO/ENTRENAMIENTO/ENTREVISTA%20BORA.mp4",
-        "caption": "ENTREVISTA BORA",
-        "badge": "ENTRENAMIENTO"
-      },
-      {
-        "url": "VIDEOFOLIO/ENTRENAMIENTO/REMAKE%20BORA%2028.09.mp4",
-        "caption": "REMAKE BORA 28.09",
-        "badge": "ENTRENAMIENTO"
-      },
-      {
-        "url": "VIDEOFOLIO/ENTRENAMIENTO/SIN%20RESULTADOS%20BORA%20-%20Trim.mp4",
-        "caption": "SIN RESULTADOS BORA   Trim",
-        "badge": "ENTRENAMIENTO"
-      },
-      {
-        "url": "VIDEOFOLIO/ENTRENAMIENTO/nachito%20de%20bora%20.%2005.10.mp4",
-        "caption": "nachito de bora . 05.10",
-        "badge": "ENTRENAMIENTO"
-      },
-      {
-        "url": "VIDEOFOLIO/ENTRENAMIENTO/sabores%20clau%20bora.mp4",
-        "caption": "sabores clau bora",
-        "badge": "ENTRENAMIENTO"
-      }
-    ]
-  },
-  "distribuidora": {
-    "title": "Distribuidora",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/DISTRIBUIDORA/0328.mp4",
-        "caption": "0328",
-        "badge": "DISTRIBUIDORA"
-      },
-      {
-        "url": "VIDEOFOLIO/DISTRIBUIDORA/JUDAS%20ULT%20VERS.mp4",
-        "caption": "JUDAS ULT VERS",
-        "badge": "DISTRIBUIDORA"
-      },
-      {
-        "url": "VIDEOFOLIO/DISTRIBUIDORA/pelea%20chsime.mp4",
-        "caption": "pelea chsime",
-        "badge": "DISTRIBUIDORA"
-      }
-    ]
-  },
-  "youtube": {
-    "title": "YouTube",
-    "videos": [
-      {
-        "url": "VIDEOFOLIO/YOUTUBE/ytb%206.mp4",
-        "caption": "ytb 6",
-        "badge": "YOUTUBE"
-      }
-    ],
-    "layout": "horizontal"
-  },
-  "grabaciones": {
-    "title": "Grabaciones",
-    "videos": [
-      {
-        "url": "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0782.MOV",
-        "caption": "Grabaciones",
-        "badge": "DJ"
-      },
-      {
-        "url": "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0786%20%282%29.MOV",
-        "caption": "Grabaciones",
-        "badge": "DJ"
-      },
-      {
-        "url": "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0789%20%281%29.MOV",
-        "caption": "Grabaciones",
-        "badge": "DJ"
-      },
-      {
-        "url": "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0799%20%281%29.MOV",
-        "caption": "Grabaciones",
-        "badge": "DJ"
-      },
-      {
-        "url": "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0800%20%281%29.MOV",
-        "caption": "Grabaciones",
-        "badge": "DJ"
-      }
-    ]
-  },
-  "video-sets": {
-    "title": "Video Sets",
-    "videos": []
-  }
-};
+const VIDEO_PROJECTS = buildVideoProjectsFromCloudConfig();
 
 
 /* ==========================================================================
@@ -3200,12 +3200,40 @@ function openCategoryVideoFeed(categoryKey) {
 
   feedContainer.innerHTML = data.videos.map((vid, idx) => `
     <div class="video-slide" data-index="${idx}">
-      <video class="tiktok-video" src="${vid.url}" loop playsinline preload="metadata" ${state.isMuted ? 'muted' : ''}></video>
+      <video
+        class="tiktok-video"
+        src="${vid.url}"
+        ${vid.fallbackUrl ? `data-fallback="${vid.fallbackUrl}"` : ''}
+        loop
+        playsinline
+        webkit-playsinline
+        preload="${idx === 0 ? 'auto' : 'metadata'}"
+        ${state.isMuted ? 'muted' : ''}
+      ></video>
       <div class="video-progress-bar-container">
         <div class="video-progress-bar-fill"></div>
       </div>
     </div>
   `).join('');
+
+  // Si una fuente falla o carga sin pista de video decodificable (videoWidth === 0 por HEVC),
+  // conmuta automáticamente a la fuente H.264 de respaldo
+  feedContainer.querySelectorAll('video.tiktok-video').forEach(v => {
+    const switchToFallback = () => {
+      const fb = v.dataset.fallback;
+      const cur = v.getAttribute('src') || '';
+      if (fb && cur !== fb && !v.dataset.switchedFb) {
+        v.dataset.switchedFb = '1';
+        v.src = fb;
+        v.load();
+        v.play().catch(() => {});
+      }
+    };
+    v.addEventListener('error', switchToFallback);
+    v.addEventListener('loadedmetadata', () => {
+      if (v.videoWidth === 0) switchToFallback();
+    });
+  });
 
   homeView.classList.remove('active');
   feedView.classList.add('active');
@@ -3225,22 +3253,36 @@ function renderHorizontalPlayer(data, container) {
     <div class="hplayer">
       <div class="hplayer-stage">
         ${multi ? '<button class="hplayer-arrow hplayer-prev" aria-label="Anterior">‹</button>' : ''}
-        <video class="hplayer-video" controls playsinline preload="metadata" ${state.isMuted ? 'muted' : ''}></video>
+        <div class="hplayer-media-slot" style="width:100%;height:100%;"></div>
         ${multi ? '<button class="hplayer-arrow hplayer-next" aria-label="Siguiente">›</button>' : ''}
       </div>
       ${multi ? '<div class="hplayer-meta"><span class="hplayer-counter"></span></div>' : ''}
     </div>
   `;
 
-  const video = container.querySelector('.hplayer-video');
-  const caption = container.querySelector('.hplayer-caption');
+  const slot = container.querySelector('.hplayer-media-slot');
   const counter = container.querySelector('.hplayer-counter');
 
   const load = (i) => {
     idx = (i + videos.length) % videos.length;
-    video.src = videos[idx].url;
-    video.muted = state.isMuted;
-    if (caption) caption.textContent = videos[idx].caption;
+    const item = videos[idx];
+    const ytEmbed = getYouTubeEmbedUrl(item.url);
+
+    if (ytEmbed) {
+      slot.innerHTML = `<iframe class="hplayer-iframe" src="${ytEmbed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0;"></iframe>`;
+    } else {
+      slot.innerHTML = `<video class="hplayer-video" src="${item.url}" controls playsinline webkit-playsinline preload="metadata" ${state.isMuted ? 'muted' : ''}></video>`;
+      const video = slot.querySelector('video');
+      if (video && item.fallbackUrl) {
+        video.addEventListener('error', () => {
+          if (video.getAttribute('src') !== item.fallbackUrl) {
+            video.removeAttribute('crossorigin');
+            video.src = item.fallbackUrl;
+            video.load();
+          }
+        }, { once: true });
+      }
+    }
     if (counter) counter.textContent = `${idx + 1}/${videos.length}`;
   };
   load(0);
@@ -3316,6 +3358,12 @@ function initFeedIntersectionObserver() {
           video.currentTime = 0;
           video.muted = state.isMuted;
           video.play().catch(() => {});
+        }
+        // Precargar el siguiente video de la nube para que el próximo swipe sea instantáneo
+        const nextSlide = slides[idx + 1];
+        if (nextSlide) {
+          const nextVid = nextSlide.querySelector('video');
+          if (nextVid && nextVid.preload !== 'auto') nextVid.preload = 'auto';
         }
       } else {
         if (video) video.pause();
