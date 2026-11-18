@@ -11,57 +11,57 @@
    sin reiniciar el decodificador ni poner la pantalla en negro.
    ========================================================================== */
 const CLOUD_VIDEO_URLS = {
-  // 1. VIDEOFOLIO -> Social Media (Vertical 9:16)
+  // 1. VIDEOFOLIO -> Social Media (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "social-media": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
   ],
 
-  // 2. VIDEOFOLIO -> Real Estate (Vertical 9:16)
+  // 2. VIDEOFOLIO -> Real Estate (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "real-estate": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955618/galpon_edit_original_-_FG.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955612/240_correccion.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955579/la_alameda_reel.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794955618/galpon_edit_original_-_FG.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794955612/240_correccion.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794955579/la_alameda_reel.mp4"
   ],
 
-  // 3. VIDEOFOLIO -> Marca Personal (Vertical 9:16)
+  // 3. VIDEOFOLIO -> Marca Personal (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "marca-personal": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955229/reel_31.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955222/ali_-_4.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955205/REEL_37.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794955229/reel_31.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794955222/ali_-_4.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794955205/REEL_37.mp4"
   ],
 
-  // 4. VIDEOFOLIO -> Gastronomía (Vertical 9:16)
+  // 4. VIDEOFOLIO -> Gastronomía (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "gastronomia": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954959/pochi_reel_2.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954946/POCHI_SORTEO_2.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794954959/pochi_reel_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794954946/POCHI_SORTEO_2.mp4"
   ],
 
-  // 5. VIDEOFOLIO -> Entrenamiento (Vertical 9:16)
+  // 5. VIDEOFOLIO -> Entrenamiento (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "entrenamiento": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954523/sabores_clau_bora.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954447/REMAKE_BORA_28.09.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954445/BORA_LUNES_7.9.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794954523/sabores_clau_bora.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794954447/REMAKE_BORA_28.09.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794954445/BORA_LUNES_7.9.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
   ],
 
-  // 6. VIDEOFOLIO -> Distribuidora (Vertical 9:16)
+  // 6. VIDEOFOLIO -> Distribuidora (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "distribuidora": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953842/JUDAS_ULT_VERS.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953806/pelea_chsime.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953842/JUDAS_ULT_VERS.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953806/pelea_chsime.mp4"
   ],
 
-  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9 - Ya codificado en H.264 19.4MB en Cloudinary)
+  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9 - Ya codificado en 720p H.264 + AAC)
   "youtube": [
     "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794961893/ytb_6.mp4"
   ],
 
-  // 8. DJ -> Grabaciones (Vertical 9:16 - Convertidos a .mp4 H.264 + AAC en Cloudinary)
+  // 8. DJ -> Grabaciones (Vertical 9:16 - 720p H.264 + AAC optimizado)
   "grabaciones": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953292/IMG_0799_1.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953268/IMG_0789_1.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953264/IMG_0786_2.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953257/IMG_0782.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953189/IMG_0800_1.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953292/IMG_0799_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953268/IMG_0789_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953264/IMG_0786_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953257/IMG_0782.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/v1794953189/IMG_0800_1.mp4"
   ],
 
   // 9. DJ -> Video Sets (Horizontal 16:9 - Próximos sets de YouTube o Cloudinary)
@@ -76,10 +76,14 @@ function optimizeCloudVideoUrl(rawUrl) {
       return 'https://res.cloudinary.com/bdyq2cm3/video/upload/v1794961893/ytb_6.mp4';
     }
     let url = trimmed.replace(/\.mov$/i, '.mp4');
-    url = url.replace('/video/upload/q_auto,f_auto/', '/video/upload/vc_h264,q_auto/');
-    url = url.replace('/video/upload/f_auto,q_auto/', '/video/upload/vc_h264,q_auto/');
-    if (!url.includes('/video/upload/vc_h264')) {
-      url = url.replace('/video/upload/', '/video/upload/vc_h264,q_auto/');
+    if (url.includes('/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/')) {
+      return url;
+    }
+    url = url.replace('/video/upload/vc_h264,q_auto/', '/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/');
+    url = url.replace('/video/upload/q_auto,f_auto/', '/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/');
+    url = url.replace('/video/upload/f_auto,q_auto/', '/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/');
+    if (!url.includes('/video/upload/c_limit,w_720')) {
+      url = url.replace('/video/upload/', '/video/upload/c_limit,w_720,vc_h264,ac_aac,q_auto/');
     }
     return url;
   }
@@ -2467,22 +2471,23 @@ const state = {
 class JellyKeyboardSoundEngine {
   constructor() {
     this.audioCtx = null;
+    this.noiseBuffer = null;
     this.unlocked = false;
     this._lastPressTime = 0;
     this._lastReleaseTime = 0;
-    this._pressWavUri = this._buildClickWavDataUri(true);
-    this._releaseWavUri = this._buildClickWavDataUri(false);
+    this._pressWavUri = this._buildAsmrThockWavDataUri(true);
+    this._releaseWavUri = this._buildAsmrThockWavDataUri(false);
     this._pressPool = [];
     this._releasePool = [];
     this._poolIdx = 0;
   }
 
-  // Genera un archivo .WAV PCM de 44.1kHz en memoria (0 dependencias externas)
-  // con frecuencias medias (420Hz-1450Hz) que suenan nítidas en parlantes de PC, notebooks y celulares
-  _buildClickWavDataUri(isPress) {
+  // Genera un archivo .WAV PCM de 44.1kHz de 160ms en memoria con las 3 capas del sonido ASMR "Jelly Thock"
+  // (160ms asegura que el driver de audio de Windows/macOS/iOS/Android abra el buffer completo sin recortarlo)
+  _buildAsmrThockWavDataUri(isPress) {
     try {
       const sampleRate = 44100;
-      const duration = isPress ? 0.042 : 0.026;
+      const duration = 0.16; // 160ms buffer (50ms ASMR thock + 110ms cola silenciosa para evitar recorte WASAPI)
       const numSamples = Math.floor(sampleRate * duration);
       const buffer = new ArrayBuffer(44 + numSamples * 2);
       const view = new DataView(buffer);
@@ -2505,27 +2510,52 @@ class JellyKeyboardSoundEngine {
       writeStr(36, 'data');
       view.setUint32(40, numSamples * 2, true);
 
-      let phase1 = 0;
-      let phase2 = 0;
-      const fStart1 = isPress ? 780 : 920;
-      const fEnd1 = isPress ? 190 : 280;
-      const fStart2 = isPress ? 1550 : 1700;
-      const fEnd2 = isPress ? 420 : 520;
-      const decayRate = isPress ? 95 : 140;
-      const amp = isPress ? 0.75 : 0.42;
+      let phaseBody = 0;
+      let phaseWood = 0;
+      let lpState = 0;
+      let seed = isPress ? 1337 : 7331;
+      const nextRand = () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1073741823.5) / 1073741823.5;
+      };
+
+      const activeDur = isPress ? 0.055 : 0.032;
+      const activeSamples = Math.floor(sampleRate * activeDur);
 
       for (let i = 0; i < numSamples; i++) {
+        if (i >= activeSamples) {
+          view.setInt16(44 + i * 2, 0, true);
+          continue;
+        }
         const t = i / sampleRate;
-        const progress = i / numSamples;
-        const f1 = fStart1 * Math.pow(fEnd1 / fStart1, progress);
-        const f2 = fStart2 * Math.pow(fEnd2 / fStart2, progress);
-        phase1 += (2 * Math.PI * f1) / sampleRate;
-        phase2 += (2 * Math.PI * f2) / sampleRate;
+        const p = Math.min(1, t / (isPress ? 0.042 : 0.024));
 
-        const env = Math.min(1, i / 45) * Math.exp(-t * decayRate);
-        const transient = i < 260 ? Math.sin(phase2) * 0.45 * Math.exp(-t * 260) : 0;
-        const sample = (Math.sin(phase1) * 0.75 + transient) * env * amp;
-        const pcm = Math.max(-1, Math.min(1, sample));
+        // Capa 1: Cuerpo grave-medio cálido "Jelly Thock" (360Hz -> 95Hz)
+        const fBody = isPress
+          ? 360 * Math.pow(95 / 360, p)
+          : 440 * Math.pow(155 / 440, p);
+        phaseBody += (2 * Math.PI * fBody) / sampleRate;
+        const envBody = Math.min(1, i / 55) * Math.exp(-t * (isPress ? 72 : 115));
+        const bodySig = Math.sin(phaseBody) * 0.68 * envBody;
+
+        // Capa 2: Resonancia "creamy" de tecla PBT en medios (640Hz -> 210Hz)
+        const pWood = Math.min(1, t / 0.018);
+        const fWood = isPress
+          ? 640 * Math.pow(210 / 640, pWood)
+          : 740 * Math.pow(290 / 740, pWood);
+        phaseWood += (2 * Math.PI * fWood) / sampleRate;
+        const envWood = Math.min(1, i / 30) * Math.exp(-t * (isPress ? 145 : 190));
+        const woodSig = Math.sin(phaseWood) * 0.38 * envWood;
+
+        // Capa 3: Textura táctil ASMR filtrada (golpe suave de yema/switch)
+        const rawNoise = nextRand();
+        lpState = lpState + 0.24 * (rawNoise - lpState);
+        const envNoise = Math.exp(-t * (isPress ? 260 : 340));
+        const noiseSig = lpState * (isPress ? 0.34 : 0.18) * envNoise;
+
+        const masterGain = isPress ? 0.92 : 0.52;
+        const mixed = Math.tanh((bodySig + woodSig + noiseSig) * masterGain * 1.35);
+        const pcm = Math.max(-1, Math.min(1, mixed));
         view.setInt16(44 + i * 2, pcm * 32767, true);
       }
 
@@ -2543,17 +2573,31 @@ class JellyKeyboardSoundEngine {
   _initPool() {
     if (this._pressPool.length > 0 || !this._pressWavUri) return;
     try {
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         const a1 = new Audio(this._pressWavUri);
         a1.preload = 'auto';
-        a1.volume = 0.75;
+        a1.volume = 0.85;
         this._pressPool.push(a1);
 
         const a2 = new Audio(this._releaseWavUri);
         a2.preload = 'auto';
-        a2.volume = 0.45;
+        a2.volume = 0.50;
         this._releasePool.push(a2);
       }
+    } catch (e) {}
+  }
+
+  _buildNoiseBuffer(ctx) {
+    if (this.noiseBuffer || !ctx) return;
+    try {
+      const sr = ctx.sampleRate || 44100;
+      const len = Math.floor(sr * 0.03);
+      const buf = ctx.createBuffer(1, len, sr);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (sr * 0.0055));
+      }
+      this.noiseBuffer = buf;
     } catch (e) {}
   }
 
@@ -2564,6 +2608,7 @@ class JellyKeyboardSoundEngine {
         const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
         if (AudioCtxClass) {
           this.audioCtx = new AudioCtxClass();
+          this._buildNoiseBuffer(this.audioCtx);
         }
       }
       if (this.audioCtx && this.audioCtx.state !== 'running') {
@@ -2578,67 +2623,97 @@ class JellyKeyboardSoundEngine {
       const ctx = this.init();
       if (ctx) {
         if (ctx.state !== 'running') {
-          ctx.resume().catch(() => {});
+          ctx.resume().then(() => {
+            this.unlocked = true;
+          }).catch(() => {});
+        } else {
+          this.unlocked = true;
         }
-        if (!this.unlocked) {
+        if (!this._unlockBufferFired) {
           const buffer = ctx.createBuffer(1, 1, 22050);
           const source = ctx.createBufferSource();
           source.buffer = buffer;
           source.connect(ctx.destination);
           if (source.start) source.start(0);
-          this.unlocked = true;
+          this._unlockBufferFired = true;
         }
       }
     } catch (e) {}
   }
 
   _jitter() {
-    return 1 + (Math.random() * 0.08 - 0.04);
+    return 1 + (Math.random() * 0.07 - 0.035);
   }
 
+  // Sintetiza el sonido ASMR "Jelly Thock" de 3 capas en el AudioContext
   _playWebAudioTone(ctx, isPress) {
     try {
+      this._buildNoiseBuffer(ctx);
       const now = ctx.currentTime;
       const j = this._jitter();
 
-      // Frecuencias medias audibles en parlantes de PC, notebooks y celulares (760Hz -> 190Hz)
+      // 1. Cuerpo "Jelly Thock" cálido (Sine sweep 350Hz -> 92Hz en 44ms)
       const mainOsc = ctx.createOscillator();
       const mainGain = ctx.createGain();
-
-      mainOsc.type = 'triangle';
-      mainOsc.frequency.setValueAtTime((isPress ? 760 : 880) * j, now);
-      mainOsc.frequency.exponentialRampToValueAtTime((isPress ? 185 : 260) * j, now + (isPress ? 0.036 : 0.022));
+      mainOsc.type = 'sine';
+      mainOsc.frequency.setValueAtTime((isPress ? 350 : 430) * j, now);
+      mainOsc.frequency.exponentialRampToValueAtTime((isPress ? 92 : 155) * j, now + (isPress ? 0.044 : 0.024));
 
       mainGain.gain.setValueAtTime(0.001, now);
-      mainGain.gain.linearRampToValueAtTime(isPress ? 0.42 : 0.20, now + 0.002);
-      mainGain.gain.exponentialRampToValueAtTime(0.001, now + (isPress ? 0.044 : 0.026));
+      mainGain.gain.linearRampToValueAtTime(isPress ? 0.52 : 0.24, now + 0.002);
+      mainGain.gain.exponentialRampToValueAtTime(0.001, now + (isPress ? 0.052 : 0.028));
 
       mainOsc.connect(mainGain);
       mainGain.connect(ctx.destination);
       mainOsc.start(now);
-      mainOsc.stop(now + (isPress ? 0.048 : 0.030));
+      mainOsc.stop(now + (isPress ? 0.055 : 0.030));
 
-      if (isPress) {
-        const clickOsc = ctx.createOscillator();
-        const clickGain = ctx.createGain();
-        clickOsc.type = 'sine';
-        clickOsc.frequency.setValueAtTime(1480 * j, now);
-        clickOsc.frequency.exponentialRampToValueAtTime(420 * j, now + 0.012);
+      // 2. Resonancia "Creamy" de tecla PBT en frecuencias medias (Triangle 640Hz -> 210Hz en 18ms)
+      const midOsc = ctx.createOscillator();
+      const midGain = ctx.createGain();
+      midOsc.type = 'triangle';
+      midOsc.frequency.setValueAtTime((isPress ? 640 : 720) * j, now);
+      midOsc.frequency.exponentialRampToValueAtTime((isPress ? 210 : 280) * j, now + (isPress ? 0.018 : 0.012));
 
-        clickGain.gain.setValueAtTime(0.001, now);
-        clickGain.gain.linearRampToValueAtTime(0.22, now + 0.001);
-        clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.013);
+      midGain.gain.setValueAtTime(0.001, now);
+      midGain.gain.linearRampToValueAtTime(isPress ? 0.28 : 0.14, now + 0.0015);
+      midGain.gain.exponentialRampToValueAtTime(0.001, now + (isPress ? 0.020 : 0.014));
 
-        clickOsc.connect(clickGain);
-        clickGain.connect(ctx.destination);
-        clickOsc.start(now);
-        clickOsc.stop(now + 0.015);
+      midOsc.connect(midGain);
+      midGain.connect(ctx.destination);
+      midOsc.start(now);
+      midOsc.stop(now + (isPress ? 0.022 : 0.016));
+
+      // 3. Textura táctil ASMR de contacto (Noise burst filtrado por paso bajo/banda en 1050Hz)
+      if (this.noiseBuffer) {
+        const noiseSrc = ctx.createBufferSource();
+        const noiseFilter = ctx.createBiquadFilter();
+        const noiseGain = ctx.createGain();
+
+        noiseSrc.buffer = this.noiseBuffer;
+        noiseFilter.type = 'bandpass';
+        noiseFilter.frequency.setValueAtTime((isPress ? 1050 : 1280) * j, now);
+        noiseFilter.Q.setValueAtTime(1.6, now);
+
+        noiseGain.gain.setValueAtTime(0.001, now);
+        noiseGain.gain.linearRampToValueAtTime(isPress ? 0.26 : 0.12, now + 0.001);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + (isPress ? 0.014 : 0.009));
+
+        noiseSrc.connect(noiseFilter);
+        noiseFilter.connect(noiseGain);
+        noiseGain.connect(ctx.destination);
+        noiseSrc.start(now);
+        noiseSrc.stop(now + (isPress ? 0.016 : 0.011));
       }
     } catch (e) {}
   }
 
   _playFallbackHtmlAudio(isPress) {
     try {
+      // No usar HTMLAudioElement si el reproductor de video está abierto para no robar el foco de audio del video
+      const feedView = document.getElementById('feed-view');
+      if (feedView && feedView.classList.contains('active')) return;
+
       this._initPool();
       const pool = isPress ? this._pressPool : this._releasePool;
       if (!pool.length) return;
@@ -2652,28 +2727,36 @@ class JellyKeyboardSoundEngine {
   press() {
     try {
       const nowMs = performance.now();
-      if (nowMs - this._lastPressTime < 25) return;
-      this._lastPressTime = nowMs;
+      if (nowMs - this._lastPressTime < 35) return;
 
       const ctx = this.init();
-      if (ctx && ctx.state === 'running') {
-        this._playWebAudioTone(ctx, true);
-      } else {
-        this._playFallbackHtmlAudio(true);
-        if (ctx) {
-          const p = ctx.resume();
-          if (p && typeof p.then === 'function') {
-            p.then(() => { this.unlocked = true; }).catch(() => {});
-          }
+      if (ctx) {
+        if (ctx.state === 'running') {
+          this._lastPressTime = nowMs;
+          this._playWebAudioTone(ctx, true);
+          return;
+        }
+        // Si el contexto está despertando en este gesto, programar el tono apenas se reanude
+        const p = ctx.resume();
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            this.unlocked = true;
+            if (performance.now() - this._lastPressTime >= 30) {
+              this._lastPressTime = performance.now();
+              this._playWebAudioTone(ctx, true);
+            }
+          }).catch(() => {});
         }
       }
+      this._lastPressTime = nowMs;
+      this._playFallbackHtmlAudio(true);
     } catch (e) {}
   }
 
   release() {
     try {
       const nowMs = performance.now();
-      if (nowMs - this._lastReleaseTime < 25) return;
+      if (nowMs - this._lastReleaseTime < 35) return;
       this._lastReleaseTime = nowMs;
 
       const ctx = this.init();
@@ -2704,7 +2787,7 @@ function setupJellyKeyboard() {
   const unlockHandler = () => {
     jellySound.unlock();
   };
-  ['touchstart', 'touchend', 'pointerdown', 'mousedown', 'click', 'keydown'].forEach(ev => {
+  ['touchstart', 'touchend', 'pointerdown', 'pointerup', 'mousedown', 'mouseup', 'click', 'keydown'].forEach(ev => {
     window.addEventListener(ev, unlockHandler, { capture: true, passive: true });
     document.addEventListener(ev, unlockHandler, { capture: true, passive: true });
   });
@@ -2720,6 +2803,8 @@ function setupJellyKeyboard() {
     if (!el) return;
 
     el.classList.add('jelly-pressed');
+    // No disparar efecto de sonido sobre el botón de mute/unmute del video para no interferir con el canal de audio del video
+    if (el.id === 'sound-toggle-btn') return;
     jellySound.press();
   };
 
@@ -2728,12 +2813,12 @@ function setupJellyKeyboard() {
     const el = target && target.closest ? target.closest(JELLY_SELECTOR) : null;
     if (el) {
       el.classList.remove('jelly-pressed');
-      jellySound.release();
+      if (el.id !== 'sound-toggle-btn') jellySound.release();
     } else {
       const pressed = document.querySelector('.jelly-pressed');
       if (pressed) {
         pressed.classList.remove('jelly-pressed');
-        jellySound.release();
+        if (pressed.id !== 'sound-toggle-btn') jellySound.release();
       }
     }
   };
@@ -2749,6 +2834,16 @@ function setupJellyKeyboard() {
   document.addEventListener('pointerup', handleRelease, { capture: true, passive: true });
   document.addEventListener('touchend', handleRelease, { capture: true, passive: true });
   document.addEventListener('mouseup', handleRelease, { capture: true, passive: true });
+
+  // Respaldo en 'click': si el navegador bloqueó el inicio de AudioContext en pointerdown pero lo autorizó en click, suena igual
+  document.addEventListener('click', (e) => {
+    const target = e.target && e.target.nodeType === 1 ? e.target : (e.target ? e.target.parentElement : null);
+    const el = target && target.closest ? target.closest(JELLY_SELECTOR) : null;
+    if (!el || el.id === 'sound-toggle-btn') return;
+    if (performance.now() - jellySound._lastPressTime > 120) {
+      jellySound.press();
+    }
+  }, { capture: true, passive: true });
 
   document.addEventListener('pointercancel', handleCancel, { passive: true });
   document.addEventListener('touchcancel', handleCancel, { passive: true });
@@ -3317,6 +3412,51 @@ function setupCarouselListeners() {
 /* ==========================================================================
    VERTICAL TIKTOK VIDEO FEED (VIDEOFOLIO & DJ) + REPRODUCTOR HORIZONTAL YT
    ========================================================================== */
+function cleanupFeedVideos(container) {
+  if (!container) return;
+  const oldVideos = container.querySelectorAll('video');
+  oldVideos.forEach(v => {
+    try {
+      v._userPaused = true;
+      v.pause();
+      v.removeAttribute('src');
+      v.load();
+    } catch (e) {}
+  });
+  container.innerHTML = '';
+}
+
+function getActiveFeedVideo(feedContainer) {
+  if (!feedContainer) return null;
+  const activeSlide = feedContainer.querySelector(`.video-slide[data-index="${state.activeVideoIndex}"]`);
+  if (activeSlide) {
+    const v = activeSlide.querySelector('video');
+    if (v) return v;
+  }
+  return feedContainer.querySelector('video');
+}
+
+function safePlayFeedVideo(video) {
+  if (!video) return;
+  video._userPaused = false;
+  video.muted = state.isMuted;
+  if (!state.isMuted) {
+    video.volume = 1.0;
+  }
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // Si el navegador exige iniciar muteado por falta de activación previa, iniciar muteado sin pausar
+      if (!state.isMuted) {
+        video.muted = true;
+        state.isMuted = true;
+        updateSoundIconUI();
+      }
+      video.play().catch(() => {});
+    });
+  }
+}
+
 function openCategoryVideoFeed(categoryKey) {
   const data = VIDEO_PROJECTS[categoryKey];
   if (!data) return;
@@ -3339,6 +3479,9 @@ function openCategoryVideoFeed(categoryKey) {
     state.intersectionObserver.disconnect();
     state.intersectionObserver = null;
   }
+
+  // Liberar conexiones HTTP de videos anteriores para que todos los videos carguen al instante
+  cleanupFeedVideos(feedContainer);
 
   // Activar vista ANTES de renderizar para que IntersectionObserver mida dimensiones reales
   homeView.classList.remove('active');
@@ -3365,7 +3508,7 @@ function openCategoryVideoFeed(categoryKey) {
         loop
         playsinline
         webkit-playsinline
-        preload="${idx <= 1 ? 'auto' : 'metadata'}"
+        preload="${idx === 0 ? 'auto' : 'metadata'}"
         ${state.isMuted ? 'muted' : ''}
       ></video>
       <div class="video-progress-bar-container">
@@ -3376,9 +3519,15 @@ function openCategoryVideoFeed(categoryKey) {
 
   feedContainer.scrollTop = 0;
 
-  initFeedIntersectionObserver();
   setupVideoTapAndProgress();
+  initFeedIntersectionObserver();
   updateSoundIconUI();
+
+  // Iniciar el primer video sincrónicamente dentro del gesto de click del usuario
+  const firstVideo = getActiveFeedVideo(feedContainer);
+  if (firstVideo) {
+    safePlayFeedVideo(firstVideo);
+  }
 }
 
 function renderHorizontalPlayer(data, container) {
@@ -3405,27 +3554,30 @@ function renderHorizontalPlayer(data, container) {
     const item = videos[idx];
     const ytEmbed = getYouTubeEmbedUrl(item.url);
 
+    const oldVid = slot.querySelector('video');
+    if (oldVid) {
+      try {
+        oldVid._userPaused = true;
+        oldVid.pause();
+        oldVid.removeAttribute('src');
+        oldVid.load();
+      } catch (e) {}
+    }
+
     if (ytEmbed) {
       slot.innerHTML = `<iframe class="hplayer-iframe" src="${ytEmbed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0;"></iframe>`;
     } else {
       slot.innerHTML = `<video class="hplayer-video" src="${item.url}" controls autoplay playsinline webkit-playsinline preload="auto" ${state.isMuted ? 'muted' : ''}></video>`;
       const video = slot.querySelector('video');
       if (video) {
-        video.play().catch(() => {
-          video.muted = true;
-          state.isMuted = true;
-          updateSoundIconUI();
-          video.play().catch(() => {});
+        video._userPaused = false;
+        video.addEventListener('volumechange', () => {
+          if (video.muted !== state.isMuted) {
+            state.isMuted = video.muted;
+            updateSoundIconUI();
+          }
         });
-        if (item.fallbackUrl) {
-          video.addEventListener('error', () => {
-            if (video.getAttribute('src') !== item.fallbackUrl) {
-              video.src = item.fallbackUrl;
-              video.load();
-              video.play().catch(() => {});
-            }
-          }, { once: true });
-        }
+        safePlayFeedVideo(video);
       }
     }
     if (counter) counter.textContent = `${idx + 1}/${videos.length}`;
@@ -3443,16 +3595,12 @@ function closeCategoryVideoFeed() {
   const feedView = document.getElementById('feed-view');
   const feedContainer = document.getElementById('feed-scroll-container');
 
-  const videos = feedContainer.querySelectorAll('video');
-  videos.forEach(v => {
-    v.pause();
-    v.currentTime = 0;
-  });
-
   if (state.intersectionObserver) {
     state.intersectionObserver.disconnect();
     state.intersectionObserver = null;
   }
+
+  cleanupFeedVideos(feedContainer);
 
   feedView.classList.remove('active');
   homeView.classList.add('active');
@@ -3488,7 +3636,7 @@ function initFeedIntersectionObserver() {
 
   const options = {
     root: container,
-    threshold: 0.65
+    threshold: 0.5
   };
 
   state.intersectionObserver = new IntersectionObserver((entries) => {
@@ -3500,28 +3648,28 @@ function initFeedIntersectionObserver() {
       if (entry.isIntersecting) {
         state.activeVideoIndex = idx;
         if (video) {
-          if (video.readyState >= 1 && video.currentTime > 0.5) {
+          if (video.preload !== 'auto') {
+            video.preload = 'auto';
+          }
+          if (video.readyState >= 1 && video.currentTime > 0.5 && video.paused) {
             try { video.currentTime = 0; } catch (e) {}
           }
-          video.muted = state.isMuted;
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              video.muted = true;
-              state.isMuted = true;
-              updateSoundIconUI();
-              video.play().catch(() => {});
-            });
-          }
+          safePlayFeedVideo(video);
         }
-        // Precargar el siguiente video de la nube para que el próximo swipe sea instantáneo
+        // Precargar el siguiente video cuando el actual entra en pantalla
         const nextSlide = slides[idx + 1];
         if (nextSlide) {
           const nextVid = nextSlide.querySelector('video');
-          if (nextVid && nextVid.preload !== 'auto') nextVid.preload = 'auto';
+          if (nextVid && nextVid.preload !== 'auto') {
+            nextVid.preload = 'auto';
+          }
         }
       } else {
-        if (video) video.pause();
+        if (video) {
+          video._userPaused = true;
+          video.muted = true;
+          video.pause();
+        }
       }
     });
   }, options);
@@ -3534,17 +3682,52 @@ function setupVideoTapAndProgress() {
   const slides = container.querySelectorAll('.video-slide');
 
   slides.forEach(slide => {
+    const idx = parseInt(slide.dataset.index, 10);
     const video = slide.querySelector('video');
     const fill = slide.querySelector('.video-progress-bar-fill');
 
     if (video) {
+      video._userPaused = false;
+
+      // Guardián anti-pausa: si el navegador pausa automáticamente el video al desmutear (volumechange),
+      // reanuda la reproducción inmediatamente a menos que el usuario lo haya pausado manualmente.
+      video.addEventListener('pause', () => {
+        const feedView = document.getElementById('feed-view');
+        const pricingBackdrop = document.getElementById('pricing-sheet-backdrop');
+        if (
+          feedView && feedView.classList.contains('active') &&
+          (!pricingBackdrop || !pricingBackdrop.classList.contains('active')) &&
+          state.activeVideoIndex === idx &&
+          !video._userPaused &&
+          !video.ended
+        ) {
+          video.play().catch(() => {});
+        }
+      });
+
+      video.addEventListener('canplay', () => {
+        const feedView = document.getElementById('feed-view');
+        const pricingBackdrop = document.getElementById('pricing-sheet-backdrop');
+        if (
+          feedView && feedView.classList.contains('active') &&
+          (!pricingBackdrop || !pricingBackdrop.classList.contains('active')) &&
+          state.activeVideoIndex === idx &&
+          !video._userPaused &&
+          video.paused
+        ) {
+          safePlayFeedVideo(video);
+        }
+      });
+
       slide.addEventListener('click', (e) => {
         if (e.target.closest('.feed-top-bar') || e.target.closest('.feed-nav-btn')) return;
 
         if (video.paused) {
-          video.play();
+          video._userPaused = false;
+          safePlayFeedVideo(video);
           showPlayPauseAnimation('play');
         } else {
+          video._userPaused = true;
           video.pause();
           showPlayPauseAnimation('pause');
         }
@@ -3572,24 +3755,41 @@ function showPlayPauseAnimation(type) {
 
 function toggleSound(e) {
   if (e) {
+    e.preventDefault();
     e.stopPropagation();
   }
   state.isMuted = !state.isMuted;
-  const feedContainer = document.getElementById('feed-scroll-container');
-  if (feedContainer) {
-    // Actualizar primero el video activo sin tocar su src ni currentTime
-    const activeSlide = feedContainer.querySelector(`.video-slide[data-index="${state.activeVideoIndex}"]`);
-    const activeVideo = activeSlide ? activeSlide.querySelector('video') : feedContainer.querySelector('video');
-    const allVideos = feedContainer.querySelectorAll('video');
-    allVideos.forEach(v => {
-      v.muted = state.isMuted;
-      if (!state.isMuted) v.volume = 1.0;
-    });
-    if (activeVideo && activeVideo.paused) {
-      activeVideo.play().catch(() => {});
-    }
-  }
   updateSoundIconUI();
+
+  const feedContainer = document.getElementById('feed-scroll-container');
+  if (!feedContainer) return;
+
+  const activeVideo = getActiveFeedVideo(feedContainer);
+  const allVideos = feedContainer.querySelectorAll('video');
+
+  allVideos.forEach(v => {
+    if (v === activeVideo) {
+      v._userPaused = false;
+      v.muted = state.isMuted;
+      if (!state.isMuted) {
+        v.volume = 1.0;
+      }
+    } else {
+      // Mantener videos en segundo plano muteados hasta que entren en pantalla
+      v.muted = true;
+    }
+  });
+
+  if (activeVideo) {
+    const resumeActive = () => {
+      if (!activeVideo._userPaused && activeVideo.paused) {
+        activeVideo.play().catch(() => {});
+      }
+    };
+    activeVideo.play().catch(() => {});
+    requestAnimationFrame(resumeActive);
+    setTimeout(resumeActive, 50);
+  }
 }
 
 function updateSoundIconUI() {
@@ -3847,7 +4047,10 @@ window.openPricingModal = function(tabKey) {
   const activeSlide = document.querySelector(`.video-slide[data-index="${state.activeVideoIndex}"]`);
   if (activeSlide) {
     const video = activeSlide.querySelector('video');
-    if (video) video.pause();
+    if (video) {
+      video._userPaused = true;
+      video.pause();
+    }
   }
 
   const backdrop = document.getElementById('pricing-sheet-backdrop');
@@ -3868,7 +4071,10 @@ window.closePricingModal = function() {
     const activeSlide = document.querySelector(`.video-slide[data-index="${state.activeVideoIndex}"]`);
     if (activeSlide) {
       const video = activeSlide.querySelector('video');
-      if (video) video.play();
+      if (video) {
+        video._userPaused = false;
+        safePlayFeedVideo(video);
+      }
     }
   }
 };
