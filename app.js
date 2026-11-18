@@ -1,67 +1,66 @@
 /**
  * SOFIA SOLAR // PORTFOLIO & CREATIVE DIRECTION
- * Cloud Video CDN Streaming Architecture (Cloudinary H.264 / AVC1)
+ * Cloud Video CDN Streaming Architecture (Cloudinary q_auto,f_auto)
  */
 
 /* ==========================================================================
-   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY H.264 STREAMING)
+   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY q_auto,f_auto)
    --------------------------------------------------------------------------
-   Todos los enlaces usan `vc_h264,q_auto` y extensión `.mp4` para garantizar
-   códec `video/mp4;codecs=avc1` compatible con el 100% de navegadores
-   (Windows, Mac, Android, iOS) sin pantallas negras por HEVC.
+   Todos los enlaces incluyen `q_auto,f_auto` para compresión y formato óptimo
+   automático al hacer scroll.
    ========================================================================== */
 const CLOUD_VIDEO_URLS = {
   // 1. VIDEOFOLIO -> Social Media (Vertical 9:16)
   "social-media": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
   ],
 
   // 2. VIDEOFOLIO -> Real Estate (Vertical 9:16)
   "real-estate": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955618/galpon_edit_original_-_FG.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955612/240_correccion.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955579/la_alameda_reel.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955618/galpon_edit_original_-_FG.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955612/240_correccion.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955579/la_alameda_reel.mp4"
   ],
 
   // 3. VIDEOFOLIO -> Marca Personal (Vertical 9:16)
   "marca-personal": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955229/reel_31.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955222/ali_-_4.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955205/REEL_37.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955229/reel_31.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955222/ali_-_4.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955205/REEL_37.mp4"
   ],
 
   // 4. VIDEOFOLIO -> Gastronomía (Vertical 9:16)
   "gastronomia": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954959/pochi_reel_2.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954946/POCHI_SORTEO_2.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954959/pochi_reel_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954946/POCHI_SORTEO_2.mp4"
   ],
 
   // 5. VIDEOFOLIO -> Entrenamiento (Vertical 9:16)
   "entrenamiento": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954523/sabores_clau_bora.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954447/REMAKE_BORA_28.09.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954445/BORA_LUNES_7.9.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954523/sabores_clau_bora.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954447/REMAKE_BORA_28.09.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954445/BORA_LUNES_7.9.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
   ],
 
   // 6. VIDEOFOLIO -> Distribuidora (Vertical 9:16)
   "distribuidora": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953842/JUDAS_ULT_VERS.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953806/pelea_chsime.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953842/JUDAS_ULT_VERS.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953806/pelea_chsime.mp4"
   ],
 
   // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9)
   "youtube": [
-    "VIDEOFOLIO/YOUTUBE/ytb%206.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794961893/ytb_6.mp4"
   ],
 
-  // 8. DJ -> Grabaciones (Vertical 9:16 - convertidos a .mp4 H.264 en Cloudinary)
+  // 8. DJ -> Grabaciones (Vertical 9:16)
   "grabaciones": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953292/IMG_0799_1.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953268/IMG_0789_1.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953264/IMG_0786_2.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953257/IMG_0782.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953189/IMG_0800_1.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953292/IMG_0799_1.mov",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953268/IMG_0789_1.mov",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953264/IMG_0786_2.mov",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953257/IMG_0782.mov",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953189/IMG_0800_1.mov"
   ],
 
   // 9. DJ -> Video Sets (Horizontal 16:9 - Próximos sets de YouTube o Cloudinary)
@@ -116,11 +115,9 @@ function optimizeCloudVideoUrl(rawUrl, fallbackUrl) {
     return fallbackUrl || trimmed;
   }
   if (trimmed.includes('res.cloudinary.com') && trimmed.includes('/video/upload/')) {
-    let url = trimmed.replace(/\.mov$/i, '.mp4');
-    if (!url.includes('/video/upload/vc_h264')) {
-      url = url.replace('/video/upload/', '/video/upload/vc_h264,q_auto/');
+    if (!trimmed.includes('/video/upload/q_auto,f_auto') && !trimmed.includes('/video/upload/f_auto,q_auto')) {
+      return trimmed.replace('/video/upload/', '/video/upload/q_auto,f_auto/');
     }
-    return url;
   }
   return trimmed;
 }
@@ -155,7 +152,6 @@ function buildVideoProjectsFromCloudConfig() {
       const item = cloudList[i];
       const rawCloudUrl = typeof item === 'string' ? item : (item && item.url ? item.url : '');
       const localH264Url = localList[i] || '';
-      // Usar SIEMPRE como fuente principal el stream de Cloudinary en H.264 (vc_h264,q_auto)
       const primaryUrl = optimizeCloudVideoUrl(rawCloudUrl, localH264Url);
       const backupUrl = localH264Url;
 
@@ -3574,7 +3570,7 @@ function renderPricingCardHTML(card, categoryContext) {
   }
 
   const waMsg = encodeURIComponent(`${waGreeting} "${card.nombre}" (${card.precio}) [${categoryContext}].`);
-  const waUrl = `https://wa.me/5491100000000?text=${waMsg}`;
+  const waUrl = `https://wa.me/5491132327560?text=${waMsg}`;
 
   return `
     <div class="pricing-card-item ${card.destacado ? 'featured' : ''}">
@@ -3623,7 +3619,7 @@ function updateMainWhatsAppCTA() {
     msg = `Bonjour Sofia ! J'ai regardé ton portfolio et j'aimerais échanger au sujet de prestations en ${catTitle}.`;
   }
 
-  const waUrl = `https://wa.me/5491100000000?text=${encodeURIComponent(msg)}`;
+  const waUrl = `https://wa.me/5491132327560?text=${encodeURIComponent(msg)}`;
 
   const waModalBtn = document.getElementById('whatsapp-cta-btn');
   if (waModalBtn) waModalBtn.href = waUrl;
