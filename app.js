@@ -1,123 +1,87 @@
 /**
  * SOFIA SOLAR // PORTFOLIO & CREATIVE DIRECTION
- * Cloud Video CDN Streaming Architecture (Cloudinary q_auto,f_auto)
+ * Cloud Video CDN Streaming Architecture (Cloudinary H.264 + AAC MP4)
  */
 
 /* ==========================================================================
-   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY q_auto,f_auto)
+   1. CONFIGURACIÓN CENTRAL DE VIDEOS EN LA NUBE (CLOUDINARY H.264 + AAC)
    --------------------------------------------------------------------------
-   Todos los enlaces incluyen `q_auto,f_auto` para compresión y formato óptimo
-   automático al hacer scroll.
+   Todos los reels usan `vc_h264,q_auto` y formato `.mp4` (`codecs=avc1` + AAC)
+   para que al activar el sonido en PC o celular el audio se habilite en 0ms
+   sin reiniciar el decodificador ni poner la pantalla en negro.
    ========================================================================== */
 const CLOUD_VIDEO_URLS = {
   // 1. VIDEOFOLIO -> Social Media (Vertical 9:16)
   "social-media": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794956266/CHICARUBIO_LETRAS.mp4"
   ],
 
   // 2. VIDEOFOLIO -> Real Estate (Vertical 9:16)
   "real-estate": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955618/galpon_edit_original_-_FG.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955612/240_correccion.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955579/la_alameda_reel.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955618/galpon_edit_original_-_FG.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955612/240_correccion.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955579/la_alameda_reel.mp4"
   ],
 
   // 3. VIDEOFOLIO -> Marca Personal (Vertical 9:16)
   "marca-personal": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955229/reel_31.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955222/ali_-_4.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794955205/REEL_37.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955229/reel_31.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955222/ali_-_4.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794955205/REEL_37.mp4"
   ],
 
   // 4. VIDEOFOLIO -> Gastronomía (Vertical 9:16)
   "gastronomia": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954959/pochi_reel_2.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954946/POCHI_SORTEO_2.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954959/pochi_reel_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954946/POCHI_SORTEO_2.mp4"
   ],
 
   // 5. VIDEOFOLIO -> Entrenamiento (Vertical 9:16)
   "entrenamiento": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954523/sabores_clau_bora.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954447/REMAKE_BORA_28.09.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954445/BORA_LUNES_7.9.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954523/sabores_clau_bora.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954447/REMAKE_BORA_28.09.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954445/BORA_LUNES_7.9.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794954324/SIN_RESULTADOS_BORA_-_Trim.mp4"
   ],
 
   // 6. VIDEOFOLIO -> Distribuidora (Vertical 9:16)
   "distribuidora": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953842/JUDAS_ULT_VERS.mp4",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953806/pelea_chsime.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953842/JUDAS_ULT_VERS.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953806/pelea_chsime.mp4"
   ],
 
-  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9)
+  // 7. VIDEOFOLIO -> YouTube (Horizontal 16:9 - Ya codificado en H.264 19.4MB en Cloudinary)
   "youtube": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794961893/ytb_6.mp4"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/v1794961893/ytb_6.mp4"
   ],
 
-  // 8. DJ -> Grabaciones (Vertical 9:16)
+  // 8. DJ -> Grabaciones (Vertical 9:16 - Convertidos a .mp4 H.264 + AAC en Cloudinary)
   "grabaciones": [
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953292/IMG_0799_1.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953268/IMG_0789_1.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953264/IMG_0786_2.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953257/IMG_0782.mov",
-    "https://res.cloudinary.com/bdyq2cm3/video/upload/q_auto,f_auto/v1794953189/IMG_0800_1.mov"
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953292/IMG_0799_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953268/IMG_0789_1.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953264/IMG_0786_2.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953257/IMG_0782.mp4",
+    "https://res.cloudinary.com/bdyq2cm3/video/upload/vc_h264,q_auto/v1794953189/IMG_0800_1.mp4"
   ],
 
   // 9. DJ -> Video Sets (Horizontal 16:9 - Próximos sets de YouTube o Cloudinary)
   "video-sets": []
 };
 
-// Rutas locales de respaldo (usadas automáticamente si estás sin internet en tu PC)
-const LOCAL_FALLBACK_URLS = {
-  "social-media": [
-    "VIDEOFOLIO/SOCIALMEDIA/CHICARUBIO%20%2B%20LETRAS.mp4"
-  ],
-  "real-estate": [
-    "VIDEOFOLIO/REALSTATE/galpon%20edit%20original%20-%20FG.mp4",
-    "VIDEOFOLIO/REALSTATE/240%20correccion.mp4",
-    "VIDEOFOLIO/REALSTATE/la%20alameda%20reel.mp4"
-  ],
-  "marca-personal": [
-    "VIDEOFOLIO/MARCA%20PERSONAL/reel%2031.mp4",
-    "VIDEOFOLIO/MARCA%20PERSONAL/ali%20-%204.mp4",
-    "VIDEOFOLIO/MARCA%20PERSONAL/REEL%2037.mp4"
-  ],
-  "gastronomia": [
-    "VIDEOFOLIO/GASTRONOMIA/pochi%20reel%202.mp4",
-    "VIDEOFOLIO/GASTRONOMIA/POCHI%20SORTEO%202.mp4"
-  ],
-  "entrenamiento": [
-    "VIDEOFOLIO/ENTRENAMIENTO/sabores%20clau%20bora.mp4",
-    "VIDEOFOLIO/ENTRENAMIENTO/REMAKE%20BORA%2028.09.mp4",
-    "VIDEOFOLIO/ENTRENAMIENTO/BORA%20LUNES%207.9.mp4",
-    "VIDEOFOLIO/ENTRENAMIENTO/SIN%20RESULTADOS%20BORA%20-%20Trim.mp4"
-  ],
-  "distribuidora": [
-    "VIDEOFOLIO/DISTRIBUIDORA/JUDAS%20ULT%20VERS.mp4",
-    "VIDEOFOLIO/DISTRIBUIDORA/pelea%20chsime.mp4"
-  ],
-  "youtube": [
-    "VIDEOFOLIO/YOUTUBE/ytb%206.mp4"
-  ],
-  "grabaciones": [
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0799%20%281%29.mp4",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0789%20%281%29.mp4",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0786%20%282%29.mp4",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0782.mp4",
-    "DJ/GRABACIONES%20CELU/VIDEOS/IMG_0800%20%281%29.mp4"
-  ],
-  "video-sets": []
-};
-
-function optimizeCloudVideoUrl(rawUrl, fallbackUrl) {
+function optimizeCloudVideoUrl(rawUrl) {
   const trimmed = (rawUrl || '').trim();
-  if (!trimmed || trimmed.includes('TU_CLOUD_NAME')) {
-    return fallbackUrl || trimmed;
-  }
+  if (!trimmed) return '';
   if (trimmed.includes('res.cloudinary.com') && trimmed.includes('/video/upload/')) {
-    if (!trimmed.includes('/video/upload/q_auto,f_auto') && !trimmed.includes('/video/upload/f_auto,q_auto')) {
-      return trimmed.replace('/video/upload/', '/video/upload/q_auto,f_auto/');
+    if (trimmed.includes('ytb_6.mp4')) {
+      return 'https://res.cloudinary.com/bdyq2cm3/video/upload/v1794961893/ytb_6.mp4';
     }
+    let url = trimmed.replace(/\.mov$/i, '.mp4');
+    url = url.replace('/video/upload/q_auto,f_auto/', '/video/upload/vc_h264,q_auto/');
+    url = url.replace('/video/upload/f_auto,q_auto/', '/video/upload/vc_h264,q_auto/');
+    if (!url.includes('/video/upload/vc_h264')) {
+      url = url.replace('/video/upload/', '/video/upload/vc_h264,q_auto/');
+    }
+    return url;
   }
   return trimmed;
 }
@@ -144,21 +108,15 @@ function buildVideoProjectsFromCloudConfig() {
   const out = {};
   Object.keys(meta).forEach(key => {
     const cloudList = CLOUD_VIDEO_URLS[key] || [];
-    const localList = LOCAL_FALLBACK_URLS[key] || [];
-    const count = Math.max(cloudList.length, localList.length);
     const videos = [];
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < cloudList.length; i++) {
       const item = cloudList[i];
       const rawCloudUrl = typeof item === 'string' ? item : (item && item.url ? item.url : '');
-      const localH264Url = localList[i] || '';
-      const primaryUrl = optimizeCloudVideoUrl(rawCloudUrl, localH264Url);
-      const backupUrl = localH264Url;
-
+      const primaryUrl = optimizeCloudVideoUrl(rawCloudUrl);
       if (primaryUrl) {
         videos.push({
           url: primaryUrl,
-          fallbackUrl: backupUrl,
           caption: meta[key].title,
           badge: meta[key].title.toUpperCase()
         });
@@ -2512,10 +2470,96 @@ class JellyKeyboardSoundEngine {
     this.unlocked = false;
     this._lastPressTime = 0;
     this._lastReleaseTime = 0;
+    this._pressWavUri = this._buildClickWavDataUri(true);
+    this._releaseWavUri = this._buildClickWavDataUri(false);
+    this._pressPool = [];
+    this._releasePool = [];
+    this._poolIdx = 0;
+  }
+
+  // Genera un archivo .WAV PCM de 44.1kHz en memoria (0 dependencias externas)
+  // con frecuencias medias (420Hz-1450Hz) que suenan nítidas en parlantes de PC, notebooks y celulares
+  _buildClickWavDataUri(isPress) {
+    try {
+      const sampleRate = 44100;
+      const duration = isPress ? 0.042 : 0.026;
+      const numSamples = Math.floor(sampleRate * duration);
+      const buffer = new ArrayBuffer(44 + numSamples * 2);
+      const view = new DataView(buffer);
+
+      const writeStr = (offset, str) => {
+        for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+      };
+
+      writeStr(0, 'RIFF');
+      view.setUint32(4, 36 + numSamples * 2, true);
+      writeStr(8, 'WAVE');
+      writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true); // PCM
+      view.setUint16(22, 1, true); // Mono
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeStr(36, 'data');
+      view.setUint32(40, numSamples * 2, true);
+
+      let phase1 = 0;
+      let phase2 = 0;
+      const fStart1 = isPress ? 780 : 920;
+      const fEnd1 = isPress ? 190 : 280;
+      const fStart2 = isPress ? 1550 : 1700;
+      const fEnd2 = isPress ? 420 : 520;
+      const decayRate = isPress ? 95 : 140;
+      const amp = isPress ? 0.75 : 0.42;
+
+      for (let i = 0; i < numSamples; i++) {
+        const t = i / sampleRate;
+        const progress = i / numSamples;
+        const f1 = fStart1 * Math.pow(fEnd1 / fStart1, progress);
+        const f2 = fStart2 * Math.pow(fEnd2 / fStart2, progress);
+        phase1 += (2 * Math.PI * f1) / sampleRate;
+        phase2 += (2 * Math.PI * f2) / sampleRate;
+
+        const env = Math.min(1, i / 45) * Math.exp(-t * decayRate);
+        const transient = i < 260 ? Math.sin(phase2) * 0.45 * Math.exp(-t * 260) : 0;
+        const sample = (Math.sin(phase1) * 0.75 + transient) * env * amp;
+        const pcm = Math.max(-1, Math.min(1, sample));
+        view.setInt16(44 + i * 2, pcm * 32767, true);
+      }
+
+      const bytes = new Uint8Array(buffer);
+      let binary = '';
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return 'data:audio/wav;base64,' + btoa(binary);
+    } catch (e) {
+      return '';
+    }
+  }
+
+  _initPool() {
+    if (this._pressPool.length > 0 || !this._pressWavUri) return;
+    try {
+      for (let i = 0; i < 4; i++) {
+        const a1 = new Audio(this._pressWavUri);
+        a1.preload = 'auto';
+        a1.volume = 0.75;
+        this._pressPool.push(a1);
+
+        const a2 = new Audio(this._releaseWavUri);
+        a2.preload = 'auto';
+        a2.volume = 0.45;
+        this._releasePool.push(a2);
+      }
+    } catch (e) {}
   }
 
   init() {
     try {
+      this._initPool();
       if (!this.audioCtx) {
         const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
         if (AudioCtxClass) {
@@ -2532,27 +2576,19 @@ class JellyKeyboardSoundEngine {
   unlock() {
     try {
       const ctx = this.init();
-      if (!ctx) return;
-
-      const playSilentBuffer = () => {
-        try {
+      if (ctx) {
+        if (ctx.state !== 'running') {
+          ctx.resume().catch(() => {});
+        }
+        if (!this.unlocked) {
           const buffer = ctx.createBuffer(1, 1, 22050);
           const source = ctx.createBufferSource();
           source.buffer = buffer;
           source.connect(ctx.destination);
           if (source.start) source.start(0);
-          else if (source.noteOn) source.noteOn(0);
           this.unlocked = true;
-        } catch (e) {}
-      };
-
-      if (ctx.state !== 'running') {
-        const p = ctx.resume();
-        if (p && typeof p.then === 'function') {
-          p.then(playSilentBuffer).catch(() => {});
         }
       }
-      playSilentBuffer();
     } catch (e) {}
   }
 
@@ -2560,66 +2596,56 @@ class JellyKeyboardSoundEngine {
     return 1 + (Math.random() * 0.08 - 0.04);
   }
 
-  _playPressOscillators(ctx) {
+  _playWebAudioTone(ctx, isPress) {
     try {
       const now = ctx.currentTime;
       const j = this._jitter();
 
-      // Main tactile body: Sine sweep 320Hz -> 90Hz over 32ms, decay 0.30 -> 0.001 over 42ms
+      // Frecuencias medias audibles en parlantes de PC, notebooks y celulares (760Hz -> 190Hz)
       const mainOsc = ctx.createOscillator();
       const mainGain = ctx.createGain();
 
-      mainOsc.type = 'sine';
-      mainOsc.frequency.setValueAtTime(320 * j, now);
-      mainOsc.frequency.exponentialRampToValueAtTime(Math.max(25, 90 * j), now + 0.032);
+      mainOsc.type = 'triangle';
+      mainOsc.frequency.setValueAtTime((isPress ? 760 : 880) * j, now);
+      mainOsc.frequency.exponentialRampToValueAtTime((isPress ? 185 : 260) * j, now + (isPress ? 0.036 : 0.022));
 
       mainGain.gain.setValueAtTime(0.001, now);
-      mainGain.gain.linearRampToValueAtTime(0.30, now + 0.002);
-      mainGain.gain.exponentialRampToValueAtTime(0.001, now + 0.042);
+      mainGain.gain.linearRampToValueAtTime(isPress ? 0.42 : 0.20, now + 0.002);
+      mainGain.gain.exponentialRampToValueAtTime(0.001, now + (isPress ? 0.044 : 0.026));
 
       mainOsc.connect(mainGain);
       mainGain.connect(ctx.destination);
       mainOsc.start(now);
-      mainOsc.stop(now + 0.046);
+      mainOsc.stop(now + (isPress ? 0.048 : 0.030));
 
-      // Crisp switch transient: 580Hz sine burst for 9ms at 0.10 gain
-      const midOsc = ctx.createOscillator();
-      const midGain = ctx.createGain();
+      if (isPress) {
+        const clickOsc = ctx.createOscillator();
+        const clickGain = ctx.createGain();
+        clickOsc.type = 'sine';
+        clickOsc.frequency.setValueAtTime(1480 * j, now);
+        clickOsc.frequency.exponentialRampToValueAtTime(420 * j, now + 0.012);
 
-      midOsc.type = 'sine';
-      midOsc.frequency.setValueAtTime(580 * j, now);
+        clickGain.gain.setValueAtTime(0.001, now);
+        clickGain.gain.linearRampToValueAtTime(0.22, now + 0.001);
+        clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.013);
 
-      midGain.gain.setValueAtTime(0.001, now);
-      midGain.gain.linearRampToValueAtTime(0.10, now + 0.001);
-      midGain.gain.exponentialRampToValueAtTime(0.001, now + 0.009);
-
-      midOsc.connect(midGain);
-      midGain.connect(ctx.destination);
-      midOsc.start(now);
-      midOsc.stop(now + 0.011);
+        clickOsc.connect(clickGain);
+        clickGain.connect(ctx.destination);
+        clickOsc.start(now);
+        clickOsc.stop(now + 0.015);
+      }
     } catch (e) {}
   }
 
-  _playReleaseOscillators(ctx) {
+  _playFallbackHtmlAudio(isPress) {
     try {
-      const now = ctx.currentTime;
-      const j = this._jitter();
-
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(420 * j, now);
-      osc.frequency.exponentialRampToValueAtTime(Math.max(30, 145 * j), now + 0.020);
-
-      gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(0.14, now + 0.0015);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.028);
+      this._initPool();
+      const pool = isPress ? this._pressPool : this._releasePool;
+      if (!pool.length) return;
+      const a = pool[this._poolIdx % pool.length];
+      this._poolIdx++;
+      a.currentTime = 0;
+      a.play().catch(() => {});
     } catch (e) {}
   }
 
@@ -2630,16 +2656,15 @@ class JellyKeyboardSoundEngine {
       this._lastPressTime = nowMs;
 
       const ctx = this.init();
-      if (!ctx) return;
-
-      if (ctx.state === 'running') {
-        this._playPressOscillators(ctx);
+      if (ctx && ctx.state === 'running') {
+        this._playWebAudioTone(ctx, true);
       } else {
-        const p = ctx.resume();
-        if (p && typeof p.then === 'function') {
-          p.then(() => this._playPressOscillators(ctx)).catch(() => {});
-        } else {
-          this._playPressOscillators(ctx);
+        this._playFallbackHtmlAudio(true);
+        if (ctx) {
+          const p = ctx.resume();
+          if (p && typeof p.then === 'function') {
+            p.then(() => { this.unlocked = true; }).catch(() => {});
+          }
         }
       }
     } catch (e) {}
@@ -2652,15 +2677,10 @@ class JellyKeyboardSoundEngine {
       this._lastReleaseTime = nowMs;
 
       const ctx = this.init();
-      if (!ctx) return;
-
-      if (ctx.state === 'running') {
-        this._playReleaseOscillators(ctx);
+      if (ctx && ctx.state === 'running') {
+        this._playWebAudioTone(ctx, false);
       } else {
-        const p = ctx.resume();
-        if (p && typeof p.then === 'function') {
-          p.then(() => this._playReleaseOscillators(ctx)).catch(() => {});
-        }
+        this._playFallbackHtmlAudio(false);
       }
     } catch (e) {}
   }
@@ -2681,7 +2701,6 @@ const JELLY_SELECTOR = [
 ].join(',');
 
 function setupJellyKeyboard() {
-  // Global Audio Context Unlocker en el primer click / touchstart / pointerdown
   const unlockHandler = () => {
     jellySound.unlock();
   };
@@ -3343,7 +3362,6 @@ function openCategoryVideoFeed(categoryKey) {
       <video
         class="tiktok-video"
         src="${vid.url}"
-        ${vid.fallbackUrl ? `data-fallback="${vid.fallbackUrl}"` : ''}
         loop
         playsinline
         webkit-playsinline
@@ -3355,24 +3373,6 @@ function openCategoryVideoFeed(categoryKey) {
       </div>
     </div>
   `).join('');
-
-  // Si una fuente falla o carga sin pista de video decodificable, conmuta al respaldo
-  feedContainer.querySelectorAll('video.tiktok-video').forEach(v => {
-    const switchToFallback = () => {
-      const fb = v.dataset.fallback;
-      const cur = v.getAttribute('src') || '';
-      if (fb && cur !== fb && !v.dataset.switchedFb) {
-        v.dataset.switchedFb = '1';
-        v.src = fb;
-        v.load();
-        v.play().catch(() => {});
-      }
-    };
-    v.addEventListener('error', switchToFallback);
-    v.addEventListener('loadedmetadata', () => {
-      if (v.videoWidth === 0) switchToFallback();
-    });
-  });
 
   feedContainer.scrollTop = 0;
 
@@ -3570,11 +3570,25 @@ function showPlayPauseAnimation(type) {
   indicator.classList.add('animate');
 }
 
-function toggleSound() {
+function toggleSound(e) {
+  if (e) {
+    e.stopPropagation();
+  }
   state.isMuted = !state.isMuted;
   const feedContainer = document.getElementById('feed-scroll-container');
-  const videos = feedContainer.querySelectorAll('video');
-  videos.forEach(v => { v.muted = state.isMuted; });
+  if (feedContainer) {
+    // Actualizar primero el video activo sin tocar su src ni currentTime
+    const activeSlide = feedContainer.querySelector(`.video-slide[data-index="${state.activeVideoIndex}"]`);
+    const activeVideo = activeSlide ? activeSlide.querySelector('video') : feedContainer.querySelector('video');
+    const allVideos = feedContainer.querySelectorAll('video');
+    allVideos.forEach(v => {
+      v.muted = state.isMuted;
+      if (!state.isMuted) v.volume = 1.0;
+    });
+    if (activeVideo && activeVideo.paused) {
+      activeVideo.play().catch(() => {});
+    }
+  }
   updateSoundIconUI();
 }
 
