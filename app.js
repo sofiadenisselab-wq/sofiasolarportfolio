@@ -2496,18 +2496,51 @@ const state = {
 class JellyKeyboardSoundEngine {
   constructor() {
     this.audioCtx = null;
+    this.unlocked = false;
+    this._lastPressTime = 0;
+    this._lastReleaseTime = 0;
   }
 
   init() {
-    if (!this.audioCtx) {
-      const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtxClass) {
-        this.audioCtx = new AudioCtxClass();
+    try {
+      if (!this.audioCtx) {
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtxClass) {
+          this.audioCtx = new AudioCtxClass({ latencyHint: 'interactive' });
+        }
       }
-    }
-    if (this.audioCtx && this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
-    }
+      if (this.audioCtx && this.audioCtx.state !== 'running') {
+        this.audioCtx.resume().catch(() => {});
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  unlock() {
+    try {
+      this.init();
+      if (!this.audioCtx) return;
+      const ctx = this.audioCtx;
+
+      if (ctx.state !== 'running') {
+        ctx.resume().catch(() => {});
+      }
+
+      // Reproducir un buffer silencioso de 1 sample dentro del gesto táctil
+      // para desbloquear el canal de hardware de audio en iOS Safari y Android Chrome
+      const buffer = ctx.createBuffer(1, 1, 22050);
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.connect(ctx.destination);
+      if (source.start) {
+        source.start(0);
+      } else if (source.noteOn) {
+        source.noteOn(0);
+      }
+
+      if (ctx.state === 'running') {
+        this.unlocked = true;
+      }
+    } catch (e) { /* ignore */ }
   }
 
   _jitter() {
@@ -2516,10 +2549,18 @@ class JellyKeyboardSoundEngine {
 
   press() {
     try {
+      const nowMs = performance.now();
+      if (nowMs - this._lastPressTime < 25) return; // Evita doble disparo touchstart + mousedown
+      this._lastPressTime = nowMs;
+
       this.init();
       if (!this.audioCtx) return;
 
       const ctx = this.audioCtx;
+      if (ctx.state !== 'running') {
+        ctx.resume().catch(() => {});
+      }
+
       const now = ctx.currentTime;
       const j = this._jitter();
 
@@ -2561,10 +2602,18 @@ class JellyKeyboardSoundEngine {
 
   release() {
     try {
+      const nowMs = performance.now();
+      if (nowMs - this._lastReleaseTime < 25) return; // Evita doble disparo touchend + mouseup
+      this._lastReleaseTime = nowMs;
+
       this.init();
       if (!this.audioCtx) return;
 
       const ctx = this.audioCtx;
+      if (ctx.state !== 'running') {
+        ctx.resume().catch(() => {});
+      }
+
       const now = ctx.currentTime;
       const j = this._jitter();
 
@@ -2595,7 +2644,7 @@ const JELLY_SELECTOR = [
   'button', 'a',
   '.role-pill-btn', '.lang-btn', '.social-bubble-btn',
   '.pricing-bubble-btn', '.nested-main-btn', '.nested-sub-btn',
-  '.carousel-arrow', '.modal-close-btn', '.sheet-close-btn',
+  '.carousel-arrow', '.carousel-dot', '.modal-close-btn', '.sheet-close-btn',
   '.footer-pricing-shortcut', '.feed-nav-btn',
   '.pricing-tab', '.pricing-tier-btn', '.plan-card-action-btn',
   '.theme-toggle-btn', '.btn-mail',
@@ -2604,32 +2653,63 @@ const JELLY_SELECTOR = [
 ].join(',');
 
 function setupJellyKeyboard() {
-  document.addEventListener('pointerdown', (e) => {
+  // 1. Global AudioContext Unlocker para iOS Safari y Android Chrome en el primer toque
+  const unlockEvents = ['touchstart', 'touchend', 'pointerdown', 'mousedown', 'click', 'keydown'];
+  const handleGlobalUnlock = () => {
+    jellySound.unlock();
+  };
+  unlockEvents.forEach(ev => {
+    document.addEventListener(ev, handleGlobalUnlock, { capture: true, passive: true });
+  });
+
+  // Re-desbloquear cuando el usuario vuelve a la pestaña o desbloquea la pantalla del celular
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      jellySound.unlocked = false;
+      jellySound.init();
+    }
+  });
+  window.addEventListener('pageshow', () => {
+    jellySound.unlocked = false;
     jellySound.init();
-    const el = e.target.closest(JELLY_SELECTOR);
+  });
+
+  // 2. Ejecución sincrónica ligada a acciones táctiles y de mouse sin bloqueos asíncronos
+  const onPress = (e) => {
+    jellySound.unlock();
+    const el = e.target && e.target.closest ? e.target.closest(JELLY_SELECTOR) : null;
     if (!el) return;
 
     el.classList.add('jelly-pressed');
     jellySound.press();
-  }, { passive: true });
+  };
 
-  document.addEventListener('pointerup', (e) => {
-    const el = e.target.closest(JELLY_SELECTOR);
-    if (!el) return;
+  const onRelease = (e) => {
+    const el = e.target && e.target.closest ? e.target.closest(JELLY_SELECTOR) : null;
+    if (el) {
+      el.classList.remove('jelly-pressed');
+      jellySound.release();
+    } else {
+      const pressed = document.querySelector('.jelly-pressed');
+      if (pressed) {
+        pressed.classList.remove('jelly-pressed');
+        jellySound.release();
+      }
+    }
+  };
 
-    el.classList.remove('jelly-pressed');
-    jellySound.release();
-  }, { passive: true });
+  const onCancel = () => {
+    document.querySelectorAll('.jelly-pressed').forEach(el => el.classList.remove('jelly-pressed'));
+  };
 
-  document.addEventListener('pointercancel', (e) => {
-    const el = e.target.closest(JELLY_SELECTOR);
-    if (el) el.classList.remove('jelly-pressed');
-  }, { passive: true });
+  document.addEventListener('touchstart', onPress, { capture: true, passive: true });
+  document.addEventListener('mousedown', onPress, { capture: true, passive: true });
 
-  document.addEventListener('pointerleave', (e) => {
-    const el = e.target.closest(JELLY_SELECTOR);
-    if (el) el.classList.remove('jelly-pressed');
-  }, { passive: true });
+  document.addEventListener('touchend', onRelease, { capture: true, passive: true });
+  document.addEventListener('mouseup', onRelease, { capture: true, passive: true });
+
+  document.addEventListener('touchcancel', onCancel, { passive: true });
+  document.addEventListener('pointercancel', onCancel, { passive: true });
 }
 
 
@@ -3037,6 +3117,22 @@ function setupNestedMenuListeners() {
 /* ==========================================================================
    INSTAGRAM-STYLE CAROUSEL INTERFACE
    ========================================================================== */
+function preloadCarouselImages() {
+  try {
+    window.__preloadedCarouselImgs = [];
+    Object.values(CAROUSEL_PROJECTS).forEach(proj => {
+      (proj.slides || []).forEach(slide => {
+        if (slide && slide.url) {
+          const img = new Image();
+          img.decoding = 'async';
+          img.src = slide.url;
+          window.__preloadedCarouselImgs.push(img);
+        }
+      });
+    });
+  } catch (e) {}
+}
+
 function openInstagramCarousel(projectKey) {
   const project = CAROUSEL_PROJECTS[projectKey];
   if (!project) return;
@@ -3053,9 +3149,13 @@ function openInstagramCarousel(projectKey) {
 
   if (titleEl) titleEl.textContent = project.title;
 
+  // Activar vista ANTES de inyectar las imágenes para que el contenedor tenga ancho real en mobile y PC
+  homeView.classList.remove('active');
+  carouselView.classList.add('active');
+
   slider.innerHTML = project.slides.map((s, idx) => `
     <div class="carousel-slide ${idx === 0 ? 'active' : ''}" data-slide-index="${idx}">
-      <img src="${s.url}" alt="${project.title} - Imagen ${idx + 1}" class="carousel-img" loading="lazy">
+      <img src="${s.url}" alt="${project.title} - Imagen ${idx + 1}" class="carousel-img" loading="eager" decoding="async" draggable="false">
     </div>
   `).join('');
 
@@ -3067,10 +3167,8 @@ function openInstagramCarousel(projectKey) {
     captionEl.textContent = project.slides[0].caption;
   }
 
+  slider.scrollLeft = 0;
   updateCarouselCounter();
-
-  homeView.classList.remove('active');
-  carouselView.classList.add('active');
   window.scrollTo(0, 0);
 
   enableScrollAndDrag(slider);
@@ -3099,20 +3197,14 @@ function setupCarouselListeners() {
 
   const prevBtn = document.getElementById('carousel-prev-btn');
   const nextBtn = document.getElementById('carousel-next-btn');
+  const dotsContainer = document.getElementById('carousel-dots');
+  let scrollLockTimer = null;
 
-  const goToSlide = (newIndex, fromScroll) => {
+  const syncCarouselUI = (newIndex) => {
     const project = CAROUSEL_PROJECTS[state.activeCarouselProject];
     if (!project) return;
 
-    if (newIndex < 0) newIndex = project.slides.length - 1;
-    if (newIndex >= project.slides.length) newIndex = 0;
-
     state.activeCarouselIndex = newIndex;
-
-    const sliderEl = document.getElementById('carousel-slider');
-    if (sliderEl && !fromScroll) {
-      sliderEl.scrollTo({ left: newIndex * sliderEl.clientWidth, behavior: 'smooth' });
-    }
 
     const slides = document.querySelectorAll('.carousel-slide');
     slides.forEach((sl, idx) => {
@@ -3132,27 +3224,55 @@ function setupCarouselListeners() {
     updateCarouselCounter();
   };
 
+  const goToSlide = (newIndex, fromScroll) => {
+    const project = CAROUSEL_PROJECTS[state.activeCarouselProject];
+    if (!project) return;
+
+    if (newIndex < 0) newIndex = project.slides.length - 1;
+    if (newIndex >= project.slides.length) newIndex = 0;
+
+    syncCarouselUI(newIndex);
+
+    const sliderEl = document.getElementById('carousel-slider');
+    if (sliderEl && !fromScroll) {
+      if (scrollLockTimer) clearTimeout(scrollLockTimer);
+      sliderEl._programmaticScroll = true;
+      sliderEl.scrollTo({ left: newIndex * sliderEl.clientWidth, behavior: 'smooth' });
+      scrollLockTimer = setTimeout(() => {
+        sliderEl._programmaticScroll = false;
+      }, 450);
+    }
+  };
+
   if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(state.activeCarouselIndex - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(state.activeCarouselIndex + 1));
 
-  // Touch Swipe for Mobile Carousel
+  if (dotsContainer) {
+    dotsContainer.addEventListener('click', (e) => {
+      const dot = e.target.closest('.carousel-dot');
+      if (!dot) return;
+      const idx = parseInt(dot.dataset.dotIndex, 10);
+      if (!isNaN(idx)) goToSlide(idx);
+    });
+  }
+
+  // Sincronización con scroll nativo (swipe táctil en celular y arrastre en PC)
   const slider = document.getElementById('carousel-slider');
   if (slider) {
     slider.addEventListener('scroll', () => {
-      if (!slider.clientWidth) return;
+      if (slider._programmaticScroll || !slider.clientWidth) return;
       const idx = Math.round(slider.scrollLeft / slider.clientWidth);
-      if (idx !== state.activeCarouselIndex && CAROUSEL_PROJECTS[state.activeCarouselProject]
-          && idx >= 0 && idx < CAROUSEL_PROJECTS[state.activeCarouselProject].slides.length) {
-        goToSlide(idx, true);
+      const project = CAROUSEL_PROJECTS[state.activeCarouselProject];
+      if (project && idx !== state.activeCarouselIndex && idx >= 0 && idx < project.slides.length) {
+        syncCarouselUI(idx);
       }
     }, { passive: true });
-
   }
 }
 
 
 /* ==========================================================================
-   VERTICAL TIKTOK VIDEO FEED (VIDEOFOLIO & SOUND & SETS)
+   VERTICAL TIKTOK VIDEO FEED (VIDEOFOLIO & DJ) + REPRODUCTOR HORIZONTAL YT
    ========================================================================== */
 function openCategoryVideoFeed(categoryKey) {
   const data = VIDEO_PROJECTS[categoryKey];
@@ -3177,19 +3297,19 @@ function openCategoryVideoFeed(categoryKey) {
     state.intersectionObserver = null;
   }
 
+  // Activar vista ANTES de renderizar para que IntersectionObserver mida dimensiones reales
+  homeView.classList.remove('active');
+  feedView.classList.add('active');
+
   if (!data.videos.length) {
     const msgs = { es: 'Próximamente', en: 'Coming soon', fr: 'Bientôt disponible' };
     feedContainer.innerHTML = `<div class="feed-empty-state"><span>${msgs[state.lang] || msgs.es}</span></div>`;
-    homeView.classList.remove('active');
-    feedView.classList.add('active');
     updateSoundIconUI();
     return;
   }
 
   if (isHorizontal) {
     renderHorizontalPlayer(data, feedContainer);
-    homeView.classList.remove('active');
-    feedView.classList.add('active');
     updateSoundIconUI();
     return;
   }
@@ -3203,7 +3323,7 @@ function openCategoryVideoFeed(categoryKey) {
         loop
         playsinline
         webkit-playsinline
-        preload="${idx === 0 ? 'auto' : 'metadata'}"
+        preload="${idx <= 1 ? 'auto' : 'metadata'}"
         ${state.isMuted ? 'muted' : ''}
       ></video>
       <div class="video-progress-bar-container">
@@ -3212,8 +3332,7 @@ function openCategoryVideoFeed(categoryKey) {
     </div>
   `).join('');
 
-  // Si una fuente falla o carga sin pista de video decodificable (videoWidth === 0 por HEVC),
-  // conmuta automáticamente a la fuente H.264 de respaldo
+  // Si una fuente falla o carga sin pista de video decodificable, conmuta al respaldo
   feedContainer.querySelectorAll('video.tiktok-video').forEach(v => {
     const switchToFallback = () => {
       const fb = v.dataset.fallback;
@@ -3231,8 +3350,6 @@ function openCategoryVideoFeed(categoryKey) {
     });
   });
 
-  homeView.classList.remove('active');
-  feedView.classList.add('active');
   feedContainer.scrollTop = 0;
 
   initFeedIntersectionObserver();
@@ -3267,16 +3384,24 @@ function renderHorizontalPlayer(data, container) {
     if (ytEmbed) {
       slot.innerHTML = `<iframe class="hplayer-iframe" src="${ytEmbed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0;"></iframe>`;
     } else {
-      slot.innerHTML = `<video class="hplayer-video" src="${item.url}" controls playsinline webkit-playsinline preload="metadata" ${state.isMuted ? 'muted' : ''}></video>`;
+      slot.innerHTML = `<video class="hplayer-video" src="${item.url}" controls autoplay playsinline webkit-playsinline preload="auto" ${state.isMuted ? 'muted' : ''}></video>`;
       const video = slot.querySelector('video');
-      if (video && item.fallbackUrl) {
-        video.addEventListener('error', () => {
-          if (video.getAttribute('src') !== item.fallbackUrl) {
-            video.removeAttribute('crossorigin');
-            video.src = item.fallbackUrl;
-            video.load();
-          }
-        }, { once: true });
+      if (video) {
+        video.play().catch(() => {
+          video.muted = true;
+          state.isMuted = true;
+          updateSoundIconUI();
+          video.play().catch(() => {});
+        });
+        if (item.fallbackUrl) {
+          video.addEventListener('error', () => {
+            if (video.getAttribute('src') !== item.fallbackUrl) {
+              video.src = item.fallbackUrl;
+              video.load();
+              video.play().catch(() => {});
+            }
+          }, { once: true });
+        }
       }
     }
     if (counter) counter.textContent = `${idx + 1}/${videos.length}`;
@@ -3351,9 +3476,19 @@ function initFeedIntersectionObserver() {
       if (entry.isIntersecting) {
         state.activeVideoIndex = idx;
         if (video) {
-          video.currentTime = 0;
+          if (video.readyState >= 1 && video.currentTime > 0.5) {
+            try { video.currentTime = 0; } catch (e) {}
+          }
           video.muted = state.isMuted;
-          video.play().catch(() => {});
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              video.muted = true;
+              state.isMuted = true;
+              updateSoundIconUI();
+              video.play().catch(() => {});
+            });
+          }
         }
         // Precargar el siguiente video de la nube para que el próximo swipe sea instantáneo
         const nextSlide = slides[idx + 1];
@@ -3637,9 +3772,6 @@ function setupPricingTabs() {
       const tabKey = tabBtn.dataset.pricingTab;
       if (tabKey === state.activePricingTab) return;
 
-      jellySound.press();
-      setTimeout(() => jellySound.release(), 30);
-
       state.activePricingTab = tabKey;
       renderPricingPanel();
     });
@@ -3653,9 +3785,6 @@ function setupPricingTabs() {
       if (!tierBtn) return;
       const tierKey = tierBtn.dataset.pricingTier;
       if (tierKey === state.activeVideoTier) return;
-
-      jellySound.press();
-      setTimeout(() => jellySound.release(), 30);
 
       state.activeVideoTier = tierKey;
       renderPricingPanel();
@@ -3720,6 +3849,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLanguageSwitcher();
   setupNestedMenuListeners();
   setupCarouselListeners();
+  preloadCarouselImages();
   setupVideoFeedListeners();
   initAllScrollAndDrag();
 
